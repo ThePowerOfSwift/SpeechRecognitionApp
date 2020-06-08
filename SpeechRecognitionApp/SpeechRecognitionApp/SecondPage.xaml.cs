@@ -21,13 +21,13 @@ namespace SpeechRecognitionApp
             }
             catch (Exception ex)
             {
-                recon.Text = ex.Message;
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
             }
         }
 
-        private void NavigateToFirstPage()
+        private void NavigateToPreviousPage()
         {
-            Navigation.PushAsync(new MainPage());
+            Navigation.PopAsync();
         }
 
         private void NavigateToThirdPage()
@@ -37,16 +37,9 @@ namespace SpeechRecognitionApp
 
         private void RegisterVoiceCommands()
         {
-            speechToTextService.RegisterCommand("Hello", new VoiceCommand(() => { SpeechToTextFinalResultRecieved("Command is 1:Hello"); }));
-            speechToTextService.RegisterCommand("Back", new VoiceCommand(NavigateToFirstPage));
+            //speechToTextService.RegisterCommand("Hello", new VoiceCommand(() => { SpeechToTextFinalResultRecieved("Command is 1:Hello"); }));
+            speechToTextService.RegisterCommand("Back", new VoiceCommand(NavigateToPreviousPage));
             speechToTextService.RegisterCommand("Next", new VoiceCommand(NavigateToThirdPage));
-        }
-
-        
-
-        private void SpeechToTextFinalResultRecieved(string args)
-        {
-            recon.Text = args;
         }
 
         private void SecondButton_Clicked(object sender, EventArgs e)
@@ -58,7 +51,7 @@ namespace SpeechRecognitionApp
 
             catch (Exception ex)
             {
-                recon.Text = ex.Message;
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
             }
 
             if (Device.RuntimePlatform == Device.iOS)
@@ -71,24 +64,6 @@ namespace SpeechRecognitionApp
         private void OnSliderValueChanged(object sender, EventArgs e)
         {
 
-        }
-
-        public class VoiceCommand : IVoiceCommand
-        {
-            private Action _action;
-            public VoiceCommand(Action action)
-            {
-                _action = action;
-            }
-            public bool CanExecute()
-            {
-                return true;
-            }
-
-            public void Execute()
-            {
-                _action.Invoke();
-            }
         }
     }
 }
