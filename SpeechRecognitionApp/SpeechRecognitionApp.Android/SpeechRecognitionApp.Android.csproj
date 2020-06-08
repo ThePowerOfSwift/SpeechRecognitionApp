@@ -58,6 +58,7 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomButtonRenderer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,6 +88,14 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\..\VoiceToCommand\VoiceToCommand.Android\VoiceToCommand.Android.csproj">
+      <Project>{4d52b42a-f73e-4b14-af16-625775c2efbd}</Project>
+      <Name>VoiceToCommand.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\VoiceToCommand\VoiceToCommand\VoiceToCommand.csproj">
+      <Project>{ccd62399-5024-409e-a211-2b76e0a5afcc}</Project>
+      <Name>VoiceToCommand</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SpeechRecognitionApp\SpeechRecognitionApp.csproj">
       <Project>{22E8A217-A253-472B-9FAB-5ED4C0659E76}</Project>
       <Name>SpeechRecognitionApp</Name>
