@@ -9,7 +9,8 @@
         <StackLayout>
             <Label Text="Welcome to Second Page!"
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                HorizontalOptions="CenterAndExpand" 
+                FontSize="Medium"/>
             <ImageButton
                x:Name="MyButton"
                BackgroundColor="Transparent"
@@ -17,9 +18,8 @@
                HeightRequest="150"
                FlexLayout.AlignSelf="Center"
                FlexLayout.Grow="1"
-               HorizontalOptions="CenterAndExpand"
+               HorizontalOptions="EndAndExpand"
                VerticalOptions="EndAndExpand" 
-               Source="mic.png"
                Clicked="SecondButton_Clicked"
                Aspect="AspectFit"/>
 

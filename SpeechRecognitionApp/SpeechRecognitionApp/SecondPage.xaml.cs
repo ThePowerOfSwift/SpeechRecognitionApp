@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using VoiceToCommand;
 using Xamarin.Forms.Xaml;
+using Xamarin.Essentials;
 
 namespace SpeechRecognitionApp
 {
@@ -16,6 +17,7 @@ namespace SpeechRecognitionApp
             try
             {
                 voiceToCommandService = DependencyService.Get<IVoiceCommandServiceFactory>().Create();
+                MyButton.Source = ImageSource.FromResource("SpeechRecognitionApp.Images.mic.png");
                 RegisterVoiceCommands();
                
             }
@@ -32,6 +34,7 @@ namespace SpeechRecognitionApp
 
         private void NavigateToThirdPage()
         {
+            TextToSpeech.SpeakAsync("Navigating To Third Page");
             Navigation.PushAsync(new ThirdPage());
         }
 

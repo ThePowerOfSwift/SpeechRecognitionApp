@@ -17,22 +17,28 @@
             Pressed="MyButton_Pressed"
             Released="MyButton_Released"/>-->
 
+        <Label 
+            x:Name="recon"
+            Text="You are in Home Page" 
+            HorizontalOptions="Center"
+            VerticalOptions="Center" 
+            FontSize="Large"/>
+        
         <ImageButton
                x:Name="MyButton"
+               HorizontalOptions="EndAndExpand"
+               VerticalOptions="EndAndExpand"
                BackgroundColor="Transparent"
                WidthRequest="150"
                HeightRequest="150"
                FlexLayout.AlignSelf="Center"
                FlexLayout.Grow="1"
-               Source="mic.png"
                Clicked="MyButton_Pressed"
                Aspect="AspectFit"/>
 
-        <Label 
-            x:Name="recon"
-            Text="Recognized text" 
-             HorizontalOptions="Center"
-           VerticalOptions="Center" />
+<!--Source="{local:ImageResource SpeechRecognitionApp.Images.mic.png}"-->
+               
+        
     </StackLayout>
 
 </ContentPage>

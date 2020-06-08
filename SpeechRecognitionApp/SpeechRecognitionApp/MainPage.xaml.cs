@@ -25,9 +25,9 @@ namespace SpeechRecognitionApp
             {
                 voiceToCommandService = DependencyService.Get<IVoiceCommandServiceFactory>().Create();
                 RegisterVoiceCommands();
-                //MyButton.ImageSource = ImageSource.FromResource("SpeechRecognitionApp.Images.mic.png");
+                MyButton.Source = ImageSource.FromResource("SpeechRecognitionApp.Images.mic.png");
                 CheckPermissionStatus();
-                SpeakInitialInstruction();
+                //SpeakInitialInstruction();
             }
             catch (Exception ex)
             {
@@ -38,11 +38,13 @@ namespace SpeechRecognitionApp
 
         private void NavigateToSecondPage()
         {
+            TextToSpeech.SpeakAsync("Navigating To Second Page");
             Navigation.PushAsync(new SecondPage());
         }
 
         private void NavigateToThirdPage()
         {
+            TextToSpeech.SpeakAsync("Navigating To Third Page");
             Navigation.PushAsync(new ThirdPage());
         }
 
@@ -93,7 +95,7 @@ namespace SpeechRecognitionApp
             {
                 if (isPermissionGranted)
                 {
-                    MyButton.ImageSource = ImageSource.FromResource("SpeechRecognitionApp.Images.mic.png");
+                    //MyButton.ImageSource = ImageSource.FromResource("SpeechRecognitionApp.Images.mic.png");
                     voiceToCommandService.StartListening();
                 }
                 else
@@ -113,10 +115,10 @@ namespace SpeechRecognitionApp
 
         }
 
-        private void MyButton_Released(object sender, EventArgs e)
-        {
-            MyButton.ImageSource = ImageSource.FromResource("SpeechRecognitionApp.Images.mic.png");
-            voiceToCommandService.StopListening();
+        //private void MyButton_Released(object sender, EventArgs e)
+        //{
+        //    MyButton.ImageSource = ImageSource.FromResource("SpeechRecognitionApp.Images.mic.png");
+        //    voiceToCommandService.StopListening();
 
         //}
     }
