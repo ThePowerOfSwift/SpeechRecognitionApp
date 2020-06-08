@@ -2,9 +2,12 @@
 using Android.Views;
 using SpeechRecognitionApp.Droid;
 using Xamarin.Forms;
+using VoiceToCommand;
+using VoiceToCommand.Droid;
 using Xamarin.Forms.Platform.Android;
-using Android.Widget;
 
+
+[assembly: ExportRenderer(typeof(Xamarin.Forms.Button), typeof(CustomButtonRenderer))]
 namespace SpeechRecognitionApp.Droid
 {
     public class CustomButtonRenderer : ButtonRenderer
