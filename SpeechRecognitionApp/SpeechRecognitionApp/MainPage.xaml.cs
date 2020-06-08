@@ -25,7 +25,7 @@ namespace SpeechRecognitionApp
             {
                 speechToTextService = DependencyService.Get<IVoiceToCommandService>();
                 RegisterVoiceCommands();
-                MyButton.ImageSource = ImageSource.FromResource("SpeechRecognitionApp.Images.mic.png");
+               // MyButton.ImageSource = ImageSource.FromResource("SpeechRecognitionApp.Images.mic.png");
                 CheckPermissionStatus();
                 SpeakInitialInstruction();
             }
@@ -78,7 +78,7 @@ namespace SpeechRecognitionApp
 
         private void SpeakInitialInstruction()
         {
-            TextToSpeech.SpeakAsync("To Speak Press and Hold the microphone Image. Release when done!");
+            TextToSpeech.SpeakAsync("To Speak Press the microphone Image!");
         }
 
         private void SpeechToTextFinalResultRecieved(string args)
@@ -93,7 +93,7 @@ namespace SpeechRecognitionApp
             {
                 if (isPermissionGranted)
                 {
-                    MyButton.ImageSource = ImageSource.FromResource("SpeechRecognitionApp.Images.mic.png");
+                   // MyButton.ImageSource = ImageSource.FromResource("SpeechRecognitionApp.Images.mic.png");
                     speechToTextService.StartListening();
                 }
                 else
@@ -113,12 +113,12 @@ namespace SpeechRecognitionApp
 
         }
 
-        private void MyButton_Released(object sender, EventArgs e)
-        {
-            MyButton.ImageSource = ImageSource.FromResource("SpeechRecognitionApp.Images.mic.png");
-            speechToTextService.StopListening();
+        //private void MyButton_Released(object sender, EventArgs e)
+        //{
+        //    MyButton.ImageSource = ImageSource.FromResource("SpeechRecognitionApp.Images.mic.png");
+        //    speechToTextService.StopListening();
 
-        }
+        //}
 
         public class VoiceCommand : IVoiceCommand
         {
