@@ -12,6 +12,7 @@
             x:Name="MyButton" 
             WidthRequest="150"
             HeightRequest="150"
+            BackgroundColor="Transparent"
             Pressed="MyButton_Pressed"
             Released="MyButton_Released"/>
 
@@ -19,8 +20,7 @@
             x:Name="recon"
             Text="Recognized text" 
              HorizontalOptions="Center"
-           VerticalOptions="Center" 
-           />
+           VerticalOptions="Center" />
     </StackLayout>
 
 </ContentPage>
