@@ -16,6 +16,7 @@ namespace SpeechRecognitionApp
     {
         private IVoiceToCommandService speechToTextService;
         private bool isPermissionGranted;
+        
         public MainPage()
         {
             InitializeComponent();
@@ -35,11 +36,21 @@ namespace SpeechRecognitionApp
 
         }
 
+        private void NavigateToSecondPage()
+        {
+            Navigation.PushAsync(new SecondPage());
+        }
+
+        private void NavigateToThirdPage()
+        {
+            Navigation.PushAsync(new ThirdPage());
+        }
+
         private void RegisterVoiceCommands()
         {
             speechToTextService.RegisterCommand("Hello", new VoiceCommand(() => { SpeechToTextFinalResultRecieved("Command is 1:Hello"); }));
-            speechToTextService.RegisterCommand("Next", new VoiceCommand(() => { SpeechToTextFinalResultRecieved("Command is 2:Go Next"); }));
-            speechToTextService.RegisterCommand("Back", new VoiceCommand(() => { SpeechToTextFinalResultRecieved("Command is 3:Go Back"); }));
+            speechToTextService.RegisterCommand("Next", new VoiceCommand(NavigateToSecondPage));
+            speechToTextService.RegisterCommand("Third", new VoiceCommand(NavigateToThirdPage));
         }
 
         private async void CheckPermissionStatus()

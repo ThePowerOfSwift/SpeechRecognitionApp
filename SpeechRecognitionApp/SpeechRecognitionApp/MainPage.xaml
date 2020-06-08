@@ -4,7 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:SpeechRecognitionApp="clr-namespace:SpeechRecognitionApp;assembly=SpeechRecognitionApp"
              mc:Ignorable="d"
-             x:Class="SpeechRecognitionApp.MainPage">
+             x:Class="SpeechRecognitionApp.MainPage"
+             NavigationPage.HasNavigationBar="False">
 
     <StackLayout Margin="10,50,10,10">
         <!-- Place new controls here -->
