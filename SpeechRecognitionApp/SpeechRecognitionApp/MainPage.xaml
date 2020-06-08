@@ -9,13 +9,24 @@
 
     <StackLayout Margin="10,50,10,10">
         <!-- Place new controls here -->
-        <SpeechRecognitionApp:CustomButton 
+        <!--<SpeechRecognitionApp:CustomButton 
             x:Name="MyButton" 
             WidthRequest="150"
             HeightRequest="150"
             BackgroundColor="Transparent"
             Pressed="MyButton_Pressed"
-            Released="MyButton_Released"/>
+            Released="MyButton_Released"/>-->
+
+        <ImageButton
+               x:Name="MyButton"
+               BackgroundColor="Transparent"
+               WidthRequest="150"
+               HeightRequest="150"
+               FlexLayout.AlignSelf="Center"
+               FlexLayout.Grow="1"
+               Source="mic.png"
+               Clicked="MyButton_Pressed"
+               Aspect="AspectFit"/>
 
         <Label 
             x:Name="recon"

@@ -25,7 +25,7 @@ namespace SpeechRecognitionApp
             {
                 voiceToCommandService = DependencyService.Get<IVoiceCommandServiceFactory>().Create();
                 RegisterVoiceCommands();
-                MyButton.ImageSource = ImageSource.FromResource("SpeechRecognitionApp.Images.mic.png");
+                //MyButton.ImageSource = ImageSource.FromResource("SpeechRecognitionApp.Images.mic.png");
                 CheckPermissionStatus();
                 SpeakInitialInstruction();
             }
@@ -78,7 +78,7 @@ namespace SpeechRecognitionApp
 
         private void SpeakInitialInstruction()
         {
-            TextToSpeech.SpeakAsync("To Speak Press and Hold the microphone Image. Release when done!");
+            TextToSpeech.SpeakAsync("To Speak Press the microphone Image.");
         }
 
         private void SpeechToTextFinalResultRecieved(string args)
@@ -118,6 +118,6 @@ namespace SpeechRecognitionApp
             MyButton.ImageSource = ImageSource.FromResource("SpeechRecognitionApp.Images.mic.png");
             voiceToCommandService.StopListening();
 
-        }
+        //}
     }
 }
