@@ -11,6 +11,7 @@
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
             <ImageButton
+               x:Name="MyButton" 
                BackgroundColor="Transparent"
                WidthRequest="150"
                HeightRequest="150"
@@ -21,6 +22,12 @@
                Source="mic.png"
                Clicked="ThirdButton_Clicked"
                Aspect="AspectFit"/>
+
+            <Label 
+             x:Name="recon"
+             Text="Recognized text" 
+             HorizontalOptions="Center"
+             VerticalOptions="Center" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
