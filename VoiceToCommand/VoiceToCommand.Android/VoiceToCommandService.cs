@@ -48,6 +48,7 @@ namespace VoiceToCommand.Droid
             SpeechIntent = new Intent(RecognizerIntent.ActionRecognizeSpeech);
             SpeechIntent.PutExtra(RecognizerIntent.ExtraLanguageModel, RecognizerIntent.LanguageModelFreeForm);
             SpeechIntent.PutExtra(RecognizerIntent.ExtraCallingPackage, Android.App.Application.Context.PackageName);
+            recListener.IsRecognizedAlready = false;
             Recognizer.StartListening(SpeechIntent);
         }
 
@@ -116,7 +117,6 @@ namespace VoiceToCommand.Droid
         {
             isRecording = true;
             System.Diagnostics.Debug.WriteLine(nameof(RecListener_BeginSpeech));
-
         }
 
         private void RecListener_EndSpeech()
