@@ -31,4 +31,9 @@ namespace VoiceToCommand
 
         void DeregisterUnexecuatbleCallBack(Action callBack); 
     }
+
+    public interface IVoiceCommandServiceFactory
+    {
+        IVoiceToCommandService Create();
+    }
 }

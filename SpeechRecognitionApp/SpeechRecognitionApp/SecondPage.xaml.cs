@@ -8,14 +8,14 @@ namespace SpeechRecognitionApp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SecondPage : ContentPage
     {
-        private IVoiceToCommandService speechToTextService;
+        private IVoiceToCommandService voiceToCommandService;
         
         public SecondPage()
         {
             InitializeComponent();
             try
             {
-                speechToTextService = DependencyService.Get<IVoiceToCommandService>();
+                voiceToCommandService = DependencyService.Get<IVoiceCommandServiceFactory>().Create();
                 RegisterVoiceCommands();
                
             }
@@ -38,25 +38,20 @@ namespace SpeechRecognitionApp
         private void RegisterVoiceCommands()
         {
             //speechToTextService.RegisterCommand("Hello", new VoiceCommand(() => { SpeechToTextFinalResultRecieved("Command is 1:Hello"); }));
-            speechToTextService.RegisterCommand("Back", new VoiceCommand(NavigateToPreviousPage));
-            speechToTextService.RegisterCommand("Next", new VoiceCommand(NavigateToThirdPage));
+            voiceToCommandService.RegisterCommand("Back", new VoiceCommand(NavigateToPreviousPage));
+            voiceToCommandService.RegisterCommand("Next", new VoiceCommand(NavigateToThirdPage));
         }
 
         private void SecondButton_Clicked(object sender, EventArgs e)
         {
             try
             {
-                speechToTextService.StartListening();
+                voiceToCommandService.StartListening();
             }
 
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
-            }
-
-            if (Device.RuntimePlatform == Device.iOS)
-            {
-                MyButton.IsEnabled = false;
             }
 
         }

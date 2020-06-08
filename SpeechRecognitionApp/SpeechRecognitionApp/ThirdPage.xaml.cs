@@ -9,13 +9,13 @@ namespace SpeechRecognitionApp
     public partial class ThirdPage : ContentPage
     {
 
-        private IVoiceToCommandService speechToTextService;
+        private IVoiceToCommandService voiceToCommandService;
         public ThirdPage()
         {
             InitializeComponent();
             try
             {
-                speechToTextService = DependencyService.Get<IVoiceToCommandService>();
+                voiceToCommandService= DependencyService.Get<IVoiceCommandServiceFactory>().Create();
                 RegisterVoiceCommands();
 
             }
@@ -38,8 +38,8 @@ namespace SpeechRecognitionApp
         private void RegisterVoiceCommands()
         {
             //speechToTextService.RegisterCommand("Type", new VoiceCommand(SpeechToTextFinalResultRecieved));
-            speechToTextService.RegisterCommand("Home", new VoiceCommand(NavigateToFirstPage));
-            speechToTextService.RegisterCommand("Back", new VoiceCommand(NavigateToPreviousPage));
+            voiceToCommandService.RegisterCommand("Home", new VoiceCommand(NavigateToFirstPage));
+            voiceToCommandService.RegisterCommand("Back", new VoiceCommand(NavigateToPreviousPage));
         }
 
 
@@ -47,7 +47,7 @@ namespace SpeechRecognitionApp
         {
             try
             {
-                speechToTextService.StartListening();
+                voiceToCommandService.StartListening();
             }
 
             catch (Exception ex)

@@ -14,7 +14,7 @@ namespace SpeechRecognitionApp
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-        private IVoiceToCommandService speechToTextService;
+        private IVoiceToCommandService voiceToCommandService;
         private bool isPermissionGranted;
         
         public MainPage()
@@ -23,7 +23,7 @@ namespace SpeechRecognitionApp
             
             try
             {
-                speechToTextService = DependencyService.Get<IVoiceToCommandService>();
+                voiceToCommandService = DependencyService.Get<IVoiceCommandServiceFactory>().Create();
                 RegisterVoiceCommands();
                 MyButton.ImageSource = ImageSource.FromResource("SpeechRecognitionApp.Images.mic.png");
                 CheckPermissionStatus();
@@ -48,9 +48,9 @@ namespace SpeechRecognitionApp
 
         private void RegisterVoiceCommands()
         {
-            speechToTextService.RegisterCommand("Hello", new VoiceCommand(() => { SpeechToTextFinalResultRecieved("Command is 1:Hello"); }));
-            speechToTextService.RegisterCommand("Next", new VoiceCommand(NavigateToSecondPage));
-            speechToTextService.RegisterCommand("Third", new VoiceCommand(NavigateToThirdPage));
+            //speechToTextService.RegisterCommand("Hello", new VoiceCommand(() => { SpeechToTextFinalResultRecieved("Command is 1:Hello"); }));
+            voiceToCommandService.RegisterCommand("Next", new VoiceCommand(NavigateToSecondPage));
+            voiceToCommandService.RegisterCommand("Third", new VoiceCommand(NavigateToThirdPage));
         }
 
         private async void CheckPermissionStatus()
@@ -94,7 +94,7 @@ namespace SpeechRecognitionApp
                 if (isPermissionGranted)
                 {
                     MyButton.ImageSource = ImageSource.FromResource("SpeechRecognitionApp.Images.mic.png");
-                    speechToTextService.StartListening();
+                    voiceToCommandService.StartListening();
                 }
                 else
                 {
@@ -116,7 +116,7 @@ namespace SpeechRecognitionApp
         private void MyButton_Released(object sender, EventArgs e)
         {
             MyButton.ImageSource = ImageSource.FromResource("SpeechRecognitionApp.Images.mic.png");
-            speechToTextService.StopListening();
+            voiceToCommandService.StopListening();
 
         }
     }

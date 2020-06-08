@@ -7,7 +7,7 @@ using Android.Speech;
 using VoiceToCommand.Droid;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(VoiceToCommandService))]
+[assembly: Dependency(typeof(VoiceToCommandServiceFactory))]
 namespace VoiceToCommand.Droid
 {
     class VoiceToCommandService : IVoiceToCommandService
@@ -136,6 +136,7 @@ namespace VoiceToCommand.Droid
         {
             isRecording = false;
             recognized = recognized.ToLower();
+            System.Diagnostics.Debug.WriteLine(recognized);
             if (AllRegisteredCommands.ContainsKey(recognized))
             {
                 var command = AllRegisteredCommands[recognized];
@@ -145,6 +146,14 @@ namespace VoiceToCommand.Droid
                 }
             }
             //MessagingCenter.Send<IVoiceToCommandService, string>(this, "STT", recognized);
+        }
+    }
+
+    public class VoiceToCommandServiceFactory : IVoiceCommandServiceFactory
+    {
+        public IVoiceToCommandService Create()
+        {
+            return new VoiceToCommandService();
         }
     }
 }
