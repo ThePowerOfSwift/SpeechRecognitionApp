@@ -63,6 +63,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CustomButtonRenderer.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />
@@ -128,6 +129,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
+    <ProjectReference Include="..\..\VoiceToCommand\VoiceToCommand\VoiceToCommand.csproj">
+      <Project>{ccd62399-5024-409e-a211-2b76e0a5afcc}</Project>
+      <Name>VoiceToCommand</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SpeechRecognitionApp\SpeechRecognitionApp.csproj">
       <Project>{22E8A217-A253-472B-9FAB-5ED4C0659E76}</Project>
       <Name>SpeechRecognitionApp</Name>
