@@ -16,6 +16,19 @@ namespace SpeechRecognitionApp
         public MainPage()
         {
             InitializeComponent();
+            MyButton.ImageSource = ImageSource.FromResource("SpeechRecognitionApp.Images.mic.png");
+        }
+
+        private void MyButton_Pressed(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MyButton_Released(object sender, EventArgs e)
+        {
+
         }
     }
+
+    
 }

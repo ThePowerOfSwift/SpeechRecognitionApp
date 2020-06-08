@@ -2,15 +2,28 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:SpeechRecognitionApp="clr-namespace:SpeechRecognitionApp;assembly=SpeechRecognitionApp"
              mc:Ignorable="d"
              x:Class="SpeechRecognitionApp.MainPage">
 
-    <StackLayout>
+    <StackLayout Margin="10,50,10,10">
         <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
+
+        <SpeechRecognitionApp:CustomButton 
+            x:Name="MyButton" 
+            WidthRequest="150"
+            HeightRequest="150"
+            BackgroundColor="Transparent"
+            Pressed="MyButton_Pressed"
+            Released="MyButton_Released"
+            HorizontalOptions="Center"
+            VerticalOptions="Center" />
+
+        <Label 
+            x:Name="recon"
+            Text="Recognized text" 
            HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+           VerticalOptions="Center" />
     </StackLayout>
 
 </ContentPage>

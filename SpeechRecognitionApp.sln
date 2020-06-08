@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeechRecognitionApp.Androi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeechRecognitionApp.iOS", "SpeechRecognitionApp\SpeechRecognitionApp.iOS\SpeechRecognitionApp.iOS.csproj", "{EA7B6FF2-A9C1-4D29-9724-9B8D51106F1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeechRecognitionApp", "SpeechRecognitionApp\SpeechRecognitionApp\SpeechRecognitionApp.csproj", "{0E5D2F95-6121-4EA0-89FF-C9000A134E9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpeechRecognitionApp", "SpeechRecognitionApp\SpeechRecognitionApp\SpeechRecognitionApp.csproj", "{0E5D2F95-6121-4EA0-89FF-C9000A134E9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
