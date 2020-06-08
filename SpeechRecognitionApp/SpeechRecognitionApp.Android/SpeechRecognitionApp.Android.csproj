@@ -86,7 +86,9 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\mic.png" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\VoiceToCommand\VoiceToCommand.Android\VoiceToCommand.Android.csproj">
       <Project>{4d52b42a-f73e-4b14-af16-625775c2efbd}</Project>
@@ -100,9 +102,6 @@
       <Project>{22E8A217-A253-472B-9FAB-5ED4C0659E76}</Project>
       <Name>SpeechRecognitionApp</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\mic.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
