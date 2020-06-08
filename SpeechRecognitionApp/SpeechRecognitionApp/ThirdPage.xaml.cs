@@ -21,7 +21,7 @@ namespace SpeechRecognitionApp
             }
             catch (Exception ex)
             {
-                recon.Text = ex.Message;
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
             }
         }
 
@@ -30,23 +30,16 @@ namespace SpeechRecognitionApp
             Navigation.PushAsync(new MainPage());
         }
 
-        private void NavigateToSecondPage()
+        private void NavigateToPreviousPage()
         {
-            Navigation.PushAsync(new SecondPage());
+            Navigation.PopAsync();
         }
 
         private void RegisterVoiceCommands()
         {
-            speechToTextService.RegisterCommand("Hello", new VoiceCommand(() => { SpeechToTextFinalResultRecieved("Command is 1:Hello"); }));
+            //speechToTextService.RegisterCommand("Type", new VoiceCommand(SpeechToTextFinalResultRecieved));
             speechToTextService.RegisterCommand("Home", new VoiceCommand(NavigateToFirstPage));
-            speechToTextService.RegisterCommand("Back", new VoiceCommand(NavigateToSecondPage));
-        }
-
-
-
-        private void SpeechToTextFinalResultRecieved(string args)
-        {
-            recon.Text = args;
+            speechToTextService.RegisterCommand("Back", new VoiceCommand(NavigateToPreviousPage));
         }
 
 
@@ -67,24 +60,6 @@ namespace SpeechRecognitionApp
                 MyButton.IsEnabled = false;
             }
 
-        }
-
-        public class VoiceCommand : IVoiceCommand
-        {
-            private Action _action;
-            public VoiceCommand(Action action)
-            {
-                _action = action;
-            }
-            public bool CanExecute()
-            {
-                return true;
-            }
-
-            public void Execute()
-            {
-                _action.Invoke();
-            }
         }
     }
 }

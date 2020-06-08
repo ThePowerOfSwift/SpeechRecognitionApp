@@ -23,15 +23,10 @@
                Clicked="SecondButton_Clicked"
                Aspect="AspectFit"/>
 
-            <Label 
-            x:Name="recon"
-            Text="Recognized text" 
-             HorizontalOptions="Center"
-           VerticalOptions="Center" />
-            
             <Slider x:Name="slider"
                     Maximum="360"
-                    ValueChanged="OnSliderValueChanged"/>
+                    ValueChanged="OnSliderValueChanged"
+                    IsVisible="False"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
