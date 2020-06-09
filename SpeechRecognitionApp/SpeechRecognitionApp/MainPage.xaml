@@ -9,21 +9,21 @@
 
     <StackLayout Margin="10,50,10,10">
         <!-- Place new controls here -->
-        <!--<SpeechRecognitionApp:CustomButton 
-            x:Name="MyButton" 
-            WidthRequest="150"
-            HeightRequest="150"
-            BackgroundColor="Transparent"
-            Pressed="MyButton_Pressed"
-            Released="MyButton_Released"/>-->
-
+        
         <Label 
             x:Name="recon"
-            Text="You are in Home Page" 
+            Text="You are in Home Page  &#10; &#10; &#10; Available Commands:" 
             HorizontalOptions="Center"
             VerticalOptions="Center" 
             FontSize="Large"/>
         
+        
+        <Label
+            x:Name="list"
+            HorizontalOptions="Center"
+            VerticalOptions="Center" 
+            FontSize="Large"/>
+
         <ImageButton
                x:Name="MyButton"
                HorizontalOptions="EndAndExpand"
