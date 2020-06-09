@@ -60,9 +60,9 @@ namespace SpeechRecognitionApp
         {
             var commandList = voiceToCommandService.GetExecutableCommands();
             var text = CommandList.Text + "\n";
-            foreach (String s in commandList)
+            foreach (String command in commandList)
             {
-                text += "\u25C9 \t" + s.ToString() + "\r\n";  // \u25C9- unicode for bullets
+                text += "\u25C9 \t" + command.ToString() + "\r\n";  // \u25C9- unicode for bullets
             }
 
             CommandList.Text = text;
@@ -99,7 +99,7 @@ namespace SpeechRecognitionApp
             {
                 if (isPermissionGranted)
                 {
-                    //MyButton.ImageSource = ImageSource.FromResource("SpeechRecognitionApp.Images.mic.png");
+                    
                     voiceToCommandService.StartListening();
                 }
                 else
