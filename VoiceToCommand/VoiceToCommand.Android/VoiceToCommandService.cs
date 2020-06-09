@@ -129,7 +129,7 @@ namespace VoiceToCommand.Droid
         {
             isRecording = false;
             System.Diagnostics.Debug.WriteLine(e.ToString());
-            //MessagingCenter.Send<IVoiceToCommandService, string>(this, "STT", e.ToString());
+            
         }
 
         private void RecListener_Recognized(object sender, string recognized)
@@ -145,7 +145,7 @@ namespace VoiceToCommand.Droid
                     command.Execute();
                 }
             }
-            //MessagingCenter.Send<IVoiceToCommandService, string>(this, "STT", recognized);
+            
         }
     }
 

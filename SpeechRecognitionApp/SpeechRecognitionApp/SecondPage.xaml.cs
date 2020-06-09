@@ -40,7 +40,7 @@ namespace SpeechRecognitionApp
 
         private void RegisterVoiceCommands()
         {
-            //speechToTextService.RegisterCommand("Hello", new VoiceCommand(() => { SpeechToTextFinalResultRecieved("Command is 1:Hello"); }));
+            
             voiceToCommandService.RegisterCommand("Back", new VoiceCommand(NavigateToPreviousPage));
             voiceToCommandService.RegisterCommand("Next", new VoiceCommand(NavigateToThirdPage));
         }

@@ -9,21 +9,14 @@
 
     <StackLayout Margin="10,50,10,10">
         <!-- Place new controls here -->
-        <!--<SpeechRecognitionApp:CustomButton 
-            x:Name="MyButton" 
-            WidthRequest="150"
-            HeightRequest="150"
-            BackgroundColor="Transparent"
-            Pressed="MyButton_Pressed"
-            Released="MyButton_Released"/>-->
-
+        
         <Label 
             x:Name="recon"
             Text="You are in Home Page" 
             HorizontalOptions="Center"
             VerticalOptions="Center" 
             FontSize="Large"/>
-        
+
         <ImageButton
                x:Name="MyButton"
                HorizontalOptions="EndAndExpand"
@@ -36,9 +29,7 @@
                Clicked="MyButton_Pressed"
                Aspect="AspectFit"/>
 
-<!--Source="{local:ImageResource SpeechRecognitionApp.Images.mic.png}"-->
-               
-        
+
     </StackLayout>
 
 </ContentPage>

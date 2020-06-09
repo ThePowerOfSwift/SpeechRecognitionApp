@@ -27,7 +27,7 @@ namespace SpeechRecognitionApp
                 RegisterVoiceCommands();
                 MyButton.Source = ImageSource.FromResource("SpeechRecognitionApp.Images.mic.png");
                 CheckPermissionStatus();
-                //SpeakInitialInstruction();
+                
             }
             catch (Exception ex)
             {
@@ -50,7 +50,7 @@ namespace SpeechRecognitionApp
 
         private void RegisterVoiceCommands()
         {
-            //speechToTextService.RegisterCommand("Hello", new VoiceCommand(() => { SpeechToTextFinalResultRecieved("Command is 1:Hello"); }));
+           
             voiceToCommandService.RegisterCommand("Next", new VoiceCommand(NavigateToSecondPage));
             voiceToCommandService.RegisterCommand("Third", new VoiceCommand(NavigateToThirdPage));
         }
@@ -115,11 +115,6 @@ namespace SpeechRecognitionApp
 
         }
 
-        //private void MyButton_Released(object sender, EventArgs e)
-        //{
-        //    MyButton.ImageSource = ImageSource.FromResource("SpeechRecognitionApp.Images.mic.png");
-        //    voiceToCommandService.StopListening();
-
-        //}
+       
     }
 }
