@@ -6,7 +6,6 @@ using Xamarin.Essentials;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using PermissionStatus = Plugin.Permissions.Abstractions.PermissionStatus;
-using System.Collections.Generic;
 
 namespace SpeechRecognitionApp
 {
@@ -59,14 +58,14 @@ namespace SpeechRecognitionApp
 
         private void AvailableCommands()
         {
-            List<string> commandList = voiceToCommandService.GetExecutableCommands();
-            var text = string.Empty;
+            var commandList = voiceToCommandService.GetExecutableCommands();
+            var text = CommandList.Text + "\n";
             foreach (String s in commandList)
             {
                 text += "\u25C9 \t" + s.ToString() + "\r\n";  // \u25C9- unicode for bullets
             }
 
-            list.Text = text;
+            CommandList.Text = text;
    
         }
 
@@ -93,17 +92,6 @@ namespace SpeechRecognitionApp
 
             }
         }
-
-        private void SpeakInitialInstruction()
-        {
-            TextToSpeech.SpeakAsync("To Speak Press the microphone Image.");
-        }
-
-        private void SpeechToTextFinalResultRecieved(string args)
-        {
-            recon.Text = args;
-        }
-
 
         private void MyButton_Pressed(object sender, EventArgs e)
         {

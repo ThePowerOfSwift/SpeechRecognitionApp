@@ -12,17 +12,18 @@
         
         <Label 
             x:Name="recon"
-            Text="You are in Home Page  &#10; &#10; &#10; Available Commands:" 
-            HorizontalOptions="Center"
-            VerticalOptions="Center" 
+            Text="You are in Home Page" 
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand" 
             FontSize="Large"/>
         
         
         <Label
-            x:Name="list"
+            x:Name="CommandList"
             HorizontalOptions="Center"
             VerticalOptions="Center" 
-            FontSize="Large"/>
+            FontSize="Small"
+            Text="Available Commands"/>
 
         <ImageButton
                x:Name="MyButton"

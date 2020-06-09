@@ -4,32 +4,20 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="SpeechRecognitionApp.SecondPage">
+             x:Class="SpeechRecognitionApp.SecondPage"
+             NavigationPage.BackButtonTitle="Main Page">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Second Page! &#10; &#10; &#10; Available Commands:"
+            <Label Text="Welcome to Second Page!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" 
                 FontSize="Medium"/>
             <Label
-                x:Name="list"
+                x:Name="CommandList"
                 HorizontalOptions="Center"
                 VerticalOptions="Center" 
-                FontSize="Large"/>
-
-            <!--<Button
-                x:Name="Increment"
-                Text="Confirm"
-                HorizontalOptions="CenterAndExpand"
-                VerticalOptions="CenterAndExpand"
-                Clicked="CountIncrement"/>
-            <Label
-                x:Name="numbercount"
-                HorizontalOptions="CenterAndExpand"
-                VerticalOptions="CenterAndExpand"
-                FontSize="Medium"/>-->
-
-
+                FontSize="Small"
+                Text="Available Commands"/>
 
             <ImageButton
                x:Name="MyButton"
@@ -46,6 +34,7 @@
             <Label 
                 x:Name="ClickCount"
                 Text="Click Count Appears here"
+                FontSize="Medium"
                 />
 
             <Button 

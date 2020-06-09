@@ -3,7 +3,6 @@ using Xamarin.Forms;
 using VoiceToCommand;
 using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
-using System.Collections.Generic;
 
 
 namespace SpeechRecognitionApp
@@ -33,25 +32,16 @@ namespace SpeechRecognitionApp
 
         private void AvailableCommands()
         {
-            List<string> commandList = voiceToCommandService.GetExecutableCommands();
-            var text = string.Empty;
+            var commandList = voiceToCommandService.GetExecutableCommands();
+            var text = CommandList.Text + "\n";
             foreach (String s in commandList)
             {
                 text += "\u25C9 \t" + s.ToString() + "\r\n";  // \u25C9- unicode for bullets
             }
 
-            list.Text = text;
+            CommandList.Text = text;
 
         }
-
-        
-
-        //private void CountIncrement(object sender, EventArgs e)
-        //{
-        //    count++;
-        //    numbercount.Text = "Tapped:"+ count.ToString();
-
-        //}
 
         private void NavigateToPreviousPage()
         {
