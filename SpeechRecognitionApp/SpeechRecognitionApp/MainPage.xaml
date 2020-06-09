@@ -12,7 +12,14 @@
         
         <Label 
             x:Name="recon"
-            Text="You are in Home Page" 
+            Text="You are in Home Page  &#10; &#10; &#10; Available Commands:" 
+            HorizontalOptions="Center"
+            VerticalOptions="Center" 
+            FontSize="Large"/>
+        
+        
+        <Label
+            x:Name="list"
             HorizontalOptions="Center"
             VerticalOptions="Center" 
             FontSize="Large"/>

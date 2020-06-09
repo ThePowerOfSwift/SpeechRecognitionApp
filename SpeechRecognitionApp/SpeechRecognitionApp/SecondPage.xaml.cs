@@ -3,6 +3,8 @@ using Xamarin.Forms;
 using VoiceToCommand;
 using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
+using System.Collections.Generic;
+
 
 namespace SpeechRecognitionApp
 {
@@ -10,7 +12,8 @@ namespace SpeechRecognitionApp
     public partial class SecondPage : ContentPage
     {
         private IVoiceToCommandService voiceToCommandService;
-        
+        //private int count = 0;
+
         public SecondPage()
         {
             InitializeComponent();
@@ -19,6 +22,7 @@ namespace SpeechRecognitionApp
                 voiceToCommandService = DependencyService.Get<IVoiceCommandServiceFactory>().Create();
                 MyButton.Source = ImageSource.FromResource("SpeechRecognitionApp.Images.mic.png");
                 RegisterVoiceCommands();
+                AvailableCommands();
                
             }
             catch (Exception ex)
@@ -26,6 +30,28 @@ namespace SpeechRecognitionApp
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
             }
         }
+
+        private void AvailableCommands()
+        {
+            List<string> commandList = voiceToCommandService.GetExecutableCommands();
+            var text = string.Empty;
+            foreach (String s in commandList)
+            {
+                text += "\u25C9 \t" + s.ToString() + "\r\n";  // \u25C9- unicode for bullets
+            }
+
+            list.Text = text;
+
+        }
+
+        
+
+        //private void CountIncrement(object sender, EventArgs e)
+        //{
+        //    count++;
+        //    numbercount.Text = "Tapped:"+ count.ToString();
+
+        //}
 
         private void NavigateToPreviousPage()
         {
@@ -43,6 +69,7 @@ namespace SpeechRecognitionApp
             
             voiceToCommandService.RegisterCommand("Back", new VoiceCommand(NavigateToPreviousPage));
             voiceToCommandService.RegisterCommand("Next", new VoiceCommand(NavigateToThirdPage));
+            //voiceToCommandService.RegisterCommand("Confirm", new VoiceCommand(() => { CountIncrement(null,null); }));
         }
 
         private void SecondButton_Clicked(object sender, EventArgs e)

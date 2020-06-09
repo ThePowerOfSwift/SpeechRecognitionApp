@@ -7,10 +7,18 @@
              x:Class="SpeechRecognitionApp.ThirdPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Third Page!"
+            <Label Text="Welcome to Third Page! &#10; &#10; &#10; Available Commands:"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" 
                 FontSize="Large"/>
+
+            <Label
+               x:Name="list"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" 
+               FontSize="Large"/>
+
+
             <ImageButton
                x:Name="MyButton" 
                BackgroundColor="Transparent"

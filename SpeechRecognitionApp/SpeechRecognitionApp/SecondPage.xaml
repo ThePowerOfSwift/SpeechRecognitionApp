@@ -7,10 +7,30 @@
              x:Class="SpeechRecognitionApp.SecondPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Second Page!"
+            <Label Text="Welcome to Second Page! &#10; &#10; &#10; Available Commands:"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" 
                 FontSize="Medium"/>
+            <Label
+                x:Name="list"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" 
+                FontSize="Large"/>
+
+            <!--<Button
+                x:Name="Increment"
+                Text="Confirm"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                Clicked="CountIncrement"/>
+            <Label
+                x:Name="numbercount"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                FontSize="Medium"/>-->
+
+
+
             <ImageButton
                x:Name="MyButton"
                BackgroundColor="Transparent"

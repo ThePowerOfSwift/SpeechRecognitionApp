@@ -6,6 +6,7 @@ using Xamarin.Essentials;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using PermissionStatus = Plugin.Permissions.Abstractions.PermissionStatus;
+using System.Collections.Generic;
 
 namespace SpeechRecognitionApp
 {
@@ -27,6 +28,7 @@ namespace SpeechRecognitionApp
                 RegisterVoiceCommands();
                 MyButton.Source = ImageSource.FromResource("SpeechRecognitionApp.Images.mic.png");
                 CheckPermissionStatus();
+                AvailableCommands();
                 
             }
             catch (Exception ex)
@@ -54,6 +56,20 @@ namespace SpeechRecognitionApp
             voiceToCommandService.RegisterCommand("Next", new VoiceCommand(NavigateToSecondPage));
             voiceToCommandService.RegisterCommand("Third", new VoiceCommand(NavigateToThirdPage));
         }
+
+        private void AvailableCommands()
+        {
+            List<string> commandList = voiceToCommandService.GetExecutableCommands();
+            var text = string.Empty;
+            foreach (String s in commandList)
+            {
+                text += "\u25C9 \t" + s.ToString() + "\r\n";  // \u25C9- unicode for bullets
+            }
+
+            list.Text = text;
+   
+        }
+
 
         private async void CheckPermissionStatus()
         {
