@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:SpeechRecognitionApp="clr-namespace:SpeechRecognitionApp;assembly=SpeechRecognitionApp"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              mc:Ignorable="d"
              x:Class="SpeechRecognitionApp.MainPage"
              NavigationPage.HasNavigationBar="False">
@@ -35,9 +35,6 @@
                FlexLayout.Grow="1"
                Clicked="MyButton_Pressed"
                Aspect="AspectFit"/>
-
-<!--Source="{local:ImageResource SpeechRecognitionApp.Images.mic.png}"-->
-               
         
     </StackLayout>
 

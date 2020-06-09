@@ -10,6 +10,7 @@ namespace SpeechRecognitionApp
     public partial class SecondPage : ContentPage
     {
         private IVoiceToCommandService voiceToCommandService;
+        private static int NumberOfClicks=0;
         
         public SecondPage()
         {
@@ -40,7 +41,7 @@ namespace SpeechRecognitionApp
 
         private void RegisterVoiceCommands()
         {
-            //speechToTextService.RegisterCommand("Hello", new VoiceCommand(() => { SpeechToTextFinalResultRecieved("Command is 1:Hello"); }));
+            voiceToCommandService.RegisterCommand("Confirm", new VoiceCommand(() => { Confirm_Clicked(this, null);})) ;
             voiceToCommandService.RegisterCommand("Back", new VoiceCommand(NavigateToPreviousPage));
             voiceToCommandService.RegisterCommand("Next", new VoiceCommand(NavigateToThirdPage));
         }
@@ -62,6 +63,12 @@ namespace SpeechRecognitionApp
         private void OnSliderValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Confirm_Clicked(object sender, EventArgs e)
+        {
+            NumberOfClicks += 1;
+            ClickCount.Text = "You Clicked the button " + NumberOfClicks + " times";
         }
     }
 }

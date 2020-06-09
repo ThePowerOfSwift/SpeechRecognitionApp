@@ -23,6 +23,19 @@
                Clicked="SecondButton_Clicked"
                Aspect="AspectFit"/>
 
+            <Label 
+                x:Name="ClickCount"
+                Text="Click Count Appears here"
+                />
+
+            <Button 
+                x:Name="Confirm_Button"
+                Text="Confirm"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Clicked="Confirm_Clicked"
+                />
+
             <Slider x:Name="slider"
                     Maximum="360"
                     ValueChanged="OnSliderValueChanged"
