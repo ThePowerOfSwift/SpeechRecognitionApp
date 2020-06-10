@@ -37,6 +37,11 @@ namespace SpeechRecognitionApp
 
         }
 
+        private void CloseApplication()
+        {
+            System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
+        }
+
         private void NavigateToSecondPage()
         {
             TextToSpeech.SpeakAsync("Navigating To Second Page");
@@ -51,7 +56,7 @@ namespace SpeechRecognitionApp
 
         private void RegisterVoiceCommands()
         {
-           
+            voiceToCommandService.RegisterCommand("Quit", new VoiceCommand(CloseApplication));
             voiceToCommandService.RegisterCommand("Next", new VoiceCommand(NavigateToSecondPage));
             voiceToCommandService.RegisterCommand("Third", new VoiceCommand(NavigateToThirdPage));
         }
