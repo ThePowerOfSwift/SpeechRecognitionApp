@@ -52,6 +52,11 @@ namespace SpeechRecognitionApp
             Navigation.PopAsync();
         }
 
+        private void NavigateToSecondPage()
+        {
+            Navigation.PushAsync(new SecondPage());
+        }
+
         private void ChangeBackgroundColor(string backgroundColor)
         {
             if(backgroundColor == "Red" )
@@ -67,6 +72,7 @@ namespace SpeechRecognitionApp
             {
                 BackgroundColor = Color.Blue;
             }
+            
 
            
         }
@@ -78,6 +84,7 @@ namespace SpeechRecognitionApp
             voiceToCommandService.RegisterCommand("Back", new VoiceCommand(NavigateToPreviousPage));
             voiceToCommandService.RegisterCommand("Red", new VoiceCommand(()=>{ ChangeBackgroundColor("Red"); }));
             voiceToCommandService.RegisterCommand("Green", new VoiceCommand(() => { ChangeBackgroundColor("Green"); }));
+            voiceToCommandService.RegisterCommand("Go To Second Page", new VoiceCommand(NavigateToSecondPage));
             voiceToCommandService.RegisterCommand("Blue", new VoiceCommand(() => { ChangeBackgroundColor("Blue"); }));
         }
 
