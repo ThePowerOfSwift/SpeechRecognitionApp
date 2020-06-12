@@ -1,5 +1,5 @@
 ﻿using System;
-using VoiceToCommand;
+using VoiceToCommandLib;
 
 namespace SpeechRecognitionApp
 {

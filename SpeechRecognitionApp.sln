@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VoiceToCommand", "VoiceToCo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoiceToCommandLib", "VoiceToCommandLib\VoiceToCommandLib.csproj", "{3B400858-0E32-4411-A388-D521456E9B6C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoiceToCommandAndroidLib", "VoiceToCommandAndroidLib\VoiceToCommandAndroidLib.csproj", "{BFC4F1D7-D18D-4E18-82FF-435754C724E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -133,6 +135,18 @@ Global
 		{3B400858-0E32-4411-A388-D521456E9B6C}.Release|iPhone.Build.0 = Release|Any CPU
 		{3B400858-0E32-4411-A388-D521456E9B6C}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{3B400858-0E32-4411-A388-D521456E9B6C}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{BFC4F1D7-D18D-4E18-82FF-435754C724E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFC4F1D7-D18D-4E18-82FF-435754C724E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFC4F1D7-D18D-4E18-82FF-435754C724E1}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{BFC4F1D7-D18D-4E18-82FF-435754C724E1}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{BFC4F1D7-D18D-4E18-82FF-435754C724E1}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{BFC4F1D7-D18D-4E18-82FF-435754C724E1}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{BFC4F1D7-D18D-4E18-82FF-435754C724E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFC4F1D7-D18D-4E18-82FF-435754C724E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFC4F1D7-D18D-4E18-82FF-435754C724E1}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{BFC4F1D7-D18D-4E18-82FF-435754C724E1}.Release|iPhone.Build.0 = Release|Any CPU
+		{BFC4F1D7-D18D-4E18-82FF-435754C724E1}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{BFC4F1D7-D18D-4E18-82FF-435754C724E1}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

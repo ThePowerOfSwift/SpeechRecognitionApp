@@ -1,6 +1,6 @@
 ﻿using System;
 using Xamarin.Forms;
-using VoiceToCommand;
+using VoiceToCommandLib;
 using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
 
