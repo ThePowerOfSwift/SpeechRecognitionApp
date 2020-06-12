@@ -43,7 +43,7 @@ namespace SpeechRecognitionApp
 
         private void NavigateToFirstPage()
         {
-            TextToSpeech.SpeakAsync("Navigating To Home Page");
+            TextToSpeech.SpeakAsync("You are in Home Page now");
             Navigation.PushAsync(new MainPage());
         }
 

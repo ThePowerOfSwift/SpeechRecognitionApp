@@ -50,7 +50,7 @@ namespace SpeechRecognitionApp
 
         private void NavigateToThirdPage()
         {
-            TextToSpeech.SpeakAsync("Navigating To Third Page");
+            TextToSpeech.SpeakAsync("You are in Third Page now");
             Navigation.PushAsync(new ThirdPage());
         }
 

@@ -44,13 +44,13 @@ namespace SpeechRecognitionApp
 
         private void NavigateToSecondPage()
         {
-            TextToSpeech.SpeakAsync("Navigating To Second Page");
+            TextToSpeech.SpeakAsync("You are in Second Page now!");
             Navigation.PushAsync(new SecondPage());
         }
 
         private void NavigateToThirdPage()
         {
-            TextToSpeech.SpeakAsync("Navigating To Third Page");
+            TextToSpeech.SpeakAsync("You are in Third Page now");
             Navigation.PushAsync(new ThirdPage());
         }
 
@@ -93,6 +93,7 @@ namespace SpeechRecognitionApp
                 if (status == PermissionStatus.Granted)
                 {
                     isPermissionGranted = true;
+                    MyButton_Pressed(this,null);
                 }
 
             }
