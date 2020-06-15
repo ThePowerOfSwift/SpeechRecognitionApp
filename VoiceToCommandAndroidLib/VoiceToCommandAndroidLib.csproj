@@ -49,24 +49,9 @@
   <ItemGroup>
     <Compile Include="RecognitionListener.cs" />
     <Compile Include="VoiceToCommandService.cs" />
-    <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\AboutResources.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.3" />
-    <PackageReference Include="Xamarin.Forms">
-      <Version>4.6.0.847</Version>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\values\strings.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\drawable\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\VoiceToCommandLib\VoiceToCommandLib.csproj">
       <Project>{3b400858-0e32-4411-a388-d521456e9b6c}</Project>
