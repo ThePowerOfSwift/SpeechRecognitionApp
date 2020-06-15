@@ -106,7 +106,6 @@ namespace SpeechRecognitionApp
             {
                 if (_isPermissionGranted)
                 {
-                    
                     _voiceToCommandService.StartListening();
                 }
                 else
