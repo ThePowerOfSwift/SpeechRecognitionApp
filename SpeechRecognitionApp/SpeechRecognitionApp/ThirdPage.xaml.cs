@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using VoiceToCommandLib;
 using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
+using CommonServiceLocator;
 
 namespace SpeechRecognitionApp
 {
@@ -10,13 +11,13 @@ namespace SpeechRecognitionApp
     public partial class ThirdPage : ContentPage
     {
 
-        private IVoiceToCommandService voiceToCommandService;
+        private readonly IVoiceToCommandService _voiceToCommandService;
         public ThirdPage()
         {
             InitializeComponent();
             try
             {
-                voiceToCommandService= DependencyService.Get<IVoiceCommandServiceFactory>().Create();
+                _voiceToCommandService = ServiceLocator.Current.GetInstance<IVoiceToCommandService>();
                 MyButton.Source = ImageSource.FromResource("SpeechRecognitionApp.Images.mic.png");
                 RegisterVoiceCommands();
                 AvailableCommands();
@@ -30,7 +31,7 @@ namespace SpeechRecognitionApp
 
         private void AvailableCommands()
         {
-            var commandList = voiceToCommandService.GetExecutableCommands();
+            var commandList = _voiceToCommandService.GetExecutableCommands();
             var text = CommandList.Text + "\n";
             foreach (String command in commandList)
             {
@@ -80,12 +81,12 @@ namespace SpeechRecognitionApp
         private void RegisterVoiceCommands()
         {
             
-            voiceToCommandService.RegisterCommand("Home", new VoiceCommand(NavigateToFirstPage));
-            voiceToCommandService.RegisterCommand("Back", new VoiceCommand(NavigateToPreviousPage));
-            voiceToCommandService.RegisterCommand("Red", new VoiceCommand(()=>{ ChangeBackgroundColor("Red"); }));
-            voiceToCommandService.RegisterCommand("Green", new VoiceCommand(() => { ChangeBackgroundColor("Green"); }));
-            voiceToCommandService.RegisterCommand("Go To Second Page", new VoiceCommand(NavigateToSecondPage));
-            voiceToCommandService.RegisterCommand("Blue", new VoiceCommand(() => { ChangeBackgroundColor("Blue"); }));
+            _voiceToCommandService.RegisterCommand("Home", new VoiceCommand(NavigateToFirstPage));
+            _voiceToCommandService.RegisterCommand("Back", new VoiceCommand(NavigateToPreviousPage));
+            _voiceToCommandService.RegisterCommand("Red", new VoiceCommand(()=>{ ChangeBackgroundColor("Red"); }));
+            _voiceToCommandService.RegisterCommand("Green", new VoiceCommand(() => { ChangeBackgroundColor("Green"); }));
+            _voiceToCommandService.RegisterCommand("Go To Second Page", new VoiceCommand(NavigateToSecondPage));
+            _voiceToCommandService.RegisterCommand("Blue", new VoiceCommand(() => { ChangeBackgroundColor("Blue"); }));
         }
 
 
@@ -93,7 +94,7 @@ namespace SpeechRecognitionApp
         {
             try
             {
-                voiceToCommandService.StartListening();
+                _voiceToCommandService.StartListening();
             }
 
             catch (Exception ex)

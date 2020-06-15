@@ -6,6 +6,7 @@ using Xamarin.Essentials;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using PermissionStatus = Plugin.Permissions.Abstractions.PermissionStatus;
+using CommonServiceLocator;
 
 namespace SpeechRecognitionApp
 {
@@ -14,8 +15,8 @@ namespace SpeechRecognitionApp
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-        private IVoiceToCommandService voiceToCommandService;
-        private bool isPermissionGranted;
+        private readonly IVoiceToCommandService _voiceToCommandService;
+        private bool _isPermissionGranted;
         
         public MainPage()
         {
@@ -23,7 +24,7 @@ namespace SpeechRecognitionApp
             
             try
             {
-                voiceToCommandService = DependencyService.Get<IVoiceCommandServiceFactory>().Create();
+                _voiceToCommandService = ServiceLocator.Current.GetInstance<IVoiceToCommandService>();
                 RegisterVoiceCommands();
                 MyButton.Source = ImageSource.FromResource("SpeechRecognitionApp.Images.mic.png");
                 CheckPermissionStatus();
@@ -56,14 +57,14 @@ namespace SpeechRecognitionApp
 
         private void RegisterVoiceCommands()
         {
-            voiceToCommandService.RegisterCommand("Quit", new VoiceCommand(CloseApplication));
-            voiceToCommandService.RegisterCommand("Next", new VoiceCommand(NavigateToSecondPage));
-            voiceToCommandService.RegisterCommand("Third", new VoiceCommand(NavigateToThirdPage));
+            _voiceToCommandService.RegisterCommand("Quit", new VoiceCommand(CloseApplication));
+            _voiceToCommandService.RegisterCommand("Next", new VoiceCommand(NavigateToSecondPage));
+            _voiceToCommandService.RegisterCommand("Third", new VoiceCommand(NavigateToThirdPage));
         }
 
         private void AvailableCommands()
         {
-            var commandList = voiceToCommandService.GetExecutableCommands();
+            var commandList = _voiceToCommandService.GetExecutableCommands();
             var text = CommandList.Text + "\n";
             foreach (String command in commandList)
             {
@@ -80,7 +81,7 @@ namespace SpeechRecognitionApp
             var permissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Microphone);
             if (PermissionStatus.Granted == permissionStatus)
             {
-                isPermissionGranted = true;
+                _isPermissionGranted = true;
             }
             else
             {
@@ -92,7 +93,7 @@ namespace SpeechRecognitionApp
                 var status = await CrossPermissions.Current.RequestPermissionAsync<MicrophonePermission>();
                 if (status == PermissionStatus.Granted)
                 {
-                    isPermissionGranted = true;
+                    _isPermissionGranted = true;
                     MyButton_Pressed(this,null);
                 }
 
@@ -103,10 +104,10 @@ namespace SpeechRecognitionApp
         {
             try
             {
-                if (isPermissionGranted)
+                if (_isPermissionGranted)
                 {
                     
-                    voiceToCommandService.StartListening();
+                    _voiceToCommandService.StartListening();
                 }
                 else
                 {

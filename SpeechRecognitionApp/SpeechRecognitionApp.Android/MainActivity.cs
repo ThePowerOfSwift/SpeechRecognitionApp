@@ -1,11 +1,12 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
+using Autofac;
+using CommonServiceLocator;
+using Autofac.Extras.CommonServiceLocator;
+using VoiceToCommandAndroidLib;
+using VoiceToCommandLib;
 
 namespace SpeechRecognitionApp.Droid
 {
@@ -18,6 +19,14 @@ namespace SpeechRecognitionApp.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
+
+            var builder = new ContainerBuilder();
+            builder.RegisterType<VoiceToCommandService>().As<IVoiceToCommandService>();
+            var container = builder.Build();
+
+
+            var serviceLocator = new AutofacServiceLocator(container);
+            ServiceLocator.SetLocatorProvider(() => serviceLocator);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);

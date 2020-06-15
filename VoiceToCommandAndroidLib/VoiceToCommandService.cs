@@ -4,16 +4,13 @@ using System.Linq;
 using Android.Content;
 using Android.OS;
 using Android.Speech;
-using VoiceToCommandAndroidLib;
 using VoiceToCommandLib;
-using Xamarin.Forms;
 
-[assembly: Dependency(typeof(VoiceToCommandServiceFactory))]
 namespace VoiceToCommandAndroidLib
 {
-    class VoiceToCommandService : IVoiceToCommandService
+    public class VoiceToCommandService : IVoiceToCommandService
     {
-        private bool isRecording;
+        private bool _isRecording;
         private IDictionary<string, IVoiceCommand> AllRegisteredCommands;
 
         public VoiceToCommandService()
@@ -26,7 +23,7 @@ namespace VoiceToCommandAndroidLib
 
         public bool IsListening()
         {
-            return isRecording;
+            return _isRecording;
         }
 
         public void StartListening()
@@ -55,9 +52,9 @@ namespace VoiceToCommandAndroidLib
 
         public void StopListening()
         {
-            if (isRecording)
+            if (_isRecording)
             {
-                isRecording = false;
+                _isRecording = false;
                 Recognizer.StopListening();
             }
         }
@@ -88,26 +85,26 @@ namespace VoiceToCommandAndroidLib
 
         private void RecListener_BeginSpeech()
         {
-            isRecording = true;
+            _isRecording = true;
             System.Diagnostics.Debug.WriteLine(nameof(RecListener_BeginSpeech));
         }
 
         private void RecListener_EndSpeech()
         {
-            isRecording = false;
+            _isRecording = false;
             System.Diagnostics.Debug.WriteLine(nameof(RecListener_EndSpeech));
         }
 
         private void RecListener_Error(object sender, SpeechRecognizerError e)
         {
-            isRecording = false;
+            _isRecording = false;
             System.Diagnostics.Debug.WriteLine(e.ToString());
 
         }
 
         private void RecListener_Recognized(object sender, string recognized)
         {
-            isRecording = false;
+            _isRecording = false;
             recognized = recognized.ToLower();
             System.Diagnostics.Debug.WriteLine(recognized);
             if (AllRegisteredCommands.ContainsKey(recognized))
@@ -152,14 +149,6 @@ namespace VoiceToCommandAndroidLib
         public void DeRegisterUnExecutableCallBack(Action callBack)
         {
             throw new NotImplementedException();
-        }
-    }
-
-    public class VoiceToCommandServiceFactory : IVoiceCommandServiceFactory
-    {
-        public IVoiceToCommandService Create()
-        {
-            return new VoiceToCommandService();
         }
     }
 }

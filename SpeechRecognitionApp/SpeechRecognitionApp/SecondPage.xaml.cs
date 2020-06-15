@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using VoiceToCommandLib;
 using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
+using CommonServiceLocator;
 
 
 namespace SpeechRecognitionApp
@@ -10,7 +11,7 @@ namespace SpeechRecognitionApp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SecondPage : ContentPage
     {
-        private IVoiceToCommandService voiceToCommandService;
+        private readonly IVoiceToCommandService _voiceToCommandService;
         private static int NumberOfClicks=0;
         
         public SecondPage()
@@ -18,7 +19,8 @@ namespace SpeechRecognitionApp
             InitializeComponent();
             try
             {
-                voiceToCommandService = DependencyService.Get<IVoiceCommandServiceFactory>().Create();
+                //voiceToCommandService = DependencyService.Get<IVoiceCommandServiceFactory>().Create();
+                _voiceToCommandService = ServiceLocator.Current.GetInstance<IVoiceToCommandService>();
                 MyButton.Source = ImageSource.FromResource("SpeechRecognitionApp.Images.mic.png");
                 RegisterVoiceCommands();
                 AvailableCommands();
@@ -32,7 +34,7 @@ namespace SpeechRecognitionApp
 
         private void AvailableCommands()
         {
-            var commandList = voiceToCommandService.GetExecutableCommands();
+            var commandList = _voiceToCommandService.GetExecutableCommands();
             var text = CommandList.Text + "\n";
             foreach (String command in commandList)
             {
@@ -56,16 +58,16 @@ namespace SpeechRecognitionApp
 
         private void RegisterVoiceCommands()
         {
-            voiceToCommandService.RegisterCommand("Confirm", new VoiceCommand(() => { Confirm_Clicked(this, null);})) ;
-            voiceToCommandService.RegisterCommand("Back", new VoiceCommand(NavigateToPreviousPage));
-            voiceToCommandService.RegisterCommand("Next", new VoiceCommand(NavigateToThirdPage));
+            _voiceToCommandService.RegisterCommand("Confirm", new VoiceCommand(() => { Confirm_Clicked(this, null);})) ;
+            _voiceToCommandService.RegisterCommand("Back", new VoiceCommand(NavigateToPreviousPage));
+            _voiceToCommandService.RegisterCommand("Next", new VoiceCommand(NavigateToThirdPage));
         }
 
         private void SecondButton_Clicked(object sender, EventArgs e)
         {
             try
             {
-                voiceToCommandService.StartListening();
+                _voiceToCommandService.StartListening();
             }
 
             catch (Exception ex)

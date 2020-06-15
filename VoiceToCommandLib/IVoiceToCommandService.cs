@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VoiceToCommandLib
 {
@@ -33,10 +30,5 @@ namespace VoiceToCommandLib
         void RegisterUnExecutableCallBack(Action callBack);
 
         void DeRegisterUnExecutableCallBack(Action callBack);
-    }
-
-    public interface IVoiceCommandServiceFactory
-    {
-        IVoiceToCommandService Create();
     }
 }
