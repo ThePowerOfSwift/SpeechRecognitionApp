@@ -24,7 +24,7 @@ namespace SpeechRecognitionApp.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             var builder = new ContainerBuilder();
-            builder.RegisterType<VoiceToCommandService>().As<IVoiceToCommandService>();
+            builder.RegisterType<VoiceToCommandServiceiOS>().As<IVoiceToCommandService>();
             var container = builder.Build();
             var serviceLocator = new AutofacServiceLocator(container);
             ServiceLocator.SetLocatorProvider(() => serviceLocator);

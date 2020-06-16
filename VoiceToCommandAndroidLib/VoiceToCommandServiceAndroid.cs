@@ -1,32 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Android.Content;
+﻿using Android.Content;
 using Android.OS;
 using Android.Speech;
 using VoiceToCommandCore;
 
 namespace VoiceToCommandAndroidLib
 {
-    public class VoiceToCommandService : IVoiceToCommandService
+    public class VoiceToCommandServiceAndroid : VoiceToCommandService
     {
         private bool _isRecording;
-        private IDictionary<string, IVoiceCommand> AllRegisteredCommands;
-
-        public VoiceToCommandService()
-        {
-            AllRegisteredCommands = new Dictionary<string, IVoiceCommand>();
-        }
 
         private SpeechRecognizer Recognizer { get; set; }
         private Intent SpeechIntent { get; set; }
 
-        public bool IsListening()
+        public override bool IsListening()
         {
             return _isRecording;
         }
 
-        public void StartListening()
+        public override void StartListening()
         {
             StartRecordingAndRecognizing();
         }
@@ -50,34 +41,13 @@ namespace VoiceToCommandAndroidLib
             Recognizer.StartListening(SpeechIntent);
         }
 
-        public void StopListening()
+        public override void StopListening()
         {
             if (_isRecording)
             {
                 _isRecording = false;
                 Recognizer.StopListening();
             }
-        }
-
-        public void RegisterCommand(string commandString, IVoiceCommand commandToBeExecuted)
-        {
-            AllRegisteredCommands.Add(commandString.ToLower(), commandToBeExecuted);
-        }
-
-        public void DeRegisterCommand(string commandString)
-        {
-            AllRegisteredCommands.Remove(commandString);
-        }
-
-
-        public List<string> GetAvailableCommands()
-        {
-            return AllRegisteredCommands.Keys.ToList();
-        }
-
-        public List<string> GetExecutableCommands()
-        {
-            return (AllRegisteredCommands.Where(item => item.Value.CanExecute()).Select(item => item.Key)).ToList();
         }
 
         private void RecListener_Ready(object sender, Bundle e) => System.Diagnostics.Debug.WriteLine(nameof(RecListener_Ready));
@@ -115,39 +85,6 @@ namespace VoiceToCommandAndroidLib
                 }
             }
 
-        }
-
-        public void RegisterListeningCompletedCallBack(Action callBack)
-        {
-            throw new NotImplementedException();
-        }
-
-
-        public void RegisterUnrecognizableCommandCallBack(Action callBack)
-        {
-            throw new NotImplementedException();
-        }
-
-
-
-        public void DeRegisterListeningCompletedCallBack(Action callBack)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeRegisterUnrecognizableCommandCallBack(Action callBack)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void RegisterUnExecutableCallBack(Action callBack)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeRegisterUnExecutableCallBack(Action callBack)
-        {
-            throw new NotImplementedException();
         }
     }
 }

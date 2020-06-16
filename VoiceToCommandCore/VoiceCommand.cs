@@ -1,7 +1,6 @@
 ﻿using System;
-using VoiceToCommandCore;
 
-namespace SpeechRecognitionApp
+namespace VoiceToCommandCore
 {
         public class VoiceCommand : IVoiceCommand
         {

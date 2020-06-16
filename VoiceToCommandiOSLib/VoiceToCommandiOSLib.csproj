@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VoiceToCommandService.cs" />
+    <Compile Include="VoiceToCommandServiceiOS.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VoiceToCommandCore\VoiceToCommandCore.csproj">

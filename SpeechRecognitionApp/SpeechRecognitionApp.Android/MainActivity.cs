@@ -21,7 +21,7 @@ namespace SpeechRecognitionApp.Droid
             base.OnCreate(savedInstanceState);
 
             var builder = new ContainerBuilder();
-            builder.RegisterType<VoiceToCommandService>().As<IVoiceToCommandService>();
+            builder.RegisterType<VoiceToCommandServiceAndroid>().As<IVoiceToCommandService>();
             var container = builder.Build();
 
 
