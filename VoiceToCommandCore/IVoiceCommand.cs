@@ -1,5 +1,5 @@
-﻿using System;
-namespace VoiceToCommandCore
+﻿
+namespace VoiceToCommand.Core
 {
     public interface IVoiceCommand
     {

@@ -98,17 +98,17 @@
     <AndroidResource Include="Resources\drawable\mic.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\VoiceToCommandAndroidLib\VoiceToCommandAndroidLib.csproj">
+    <ProjectReference Include="..\..\VoiceToCommandAndroidLib\VoiceToCommandLib.Droid.csproj">
       <Project>{bfc4f1d7-d18d-4e18-82ff-435754c724e1}</Project>
-      <Name>VoiceToCommandAndroidLib</Name>
+      <Name>VoiceToCommandLib.Droid</Name>
     </ProjectReference>
     <ProjectReference Include="..\SpeechRecognitionApp\SpeechRecognitionApp.csproj">
       <Project>{0E5D2F95-6121-4EA0-89FF-C9000A134E9B}</Project>
       <Name>SpeechRecognitionApp</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\VoiceToCommandCore\VoiceToCommandCore.csproj">
+    <ProjectReference Include="..\..\VoiceToCommandCore\VoiceToCommand.Core.csproj">
       <Project>{4A7F347B-F895-4E9B-8F9F-C83D69512558}</Project>
-      <Name>VoiceToCommandCore</Name>
+      <Name>VoiceToCommand.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -3,13 +3,12 @@ using AVFoundation;
 using Foundation;
 using Speech;
 using UIKit;
-using VoiceToCommandCore;
+using VoiceToCommand.Core;
 
-namespace VoiceToCommandApp.iOS
+namespace VoiceToCommandLib.iOS
 {
     public class VoiceToCommandServiceiOS : VoiceToCommandService
     {
-        //Need to give Permission
         private AVAudioEngine _audioEngine = new AVAudioEngine();
         private SFSpeechRecognizer _speechRecognizer = new SFSpeechRecognizer();
         private SFSpeechAudioBufferRecognitionRequest _recognitionRequest;
@@ -125,7 +124,6 @@ namespace VoiceToCommandApp.iOS
 
         private void DidFinishTalk()
         {
-           // MessagingCenter.Send<ISpeechToTextService>(this, "Final");
             if (_timer != null)
             {
                 _timer.Invalidate();

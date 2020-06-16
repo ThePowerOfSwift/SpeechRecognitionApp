@@ -4,7 +4,7 @@ using Android.Speech;
 using Android.Runtime;
 
 
-namespace VoiceToCommandAndroidLib
+namespace VoiceToCommandLib.Droid
 {
     public class RecognitionListener : Java.Lang.Object, IRecognitionListener
     {

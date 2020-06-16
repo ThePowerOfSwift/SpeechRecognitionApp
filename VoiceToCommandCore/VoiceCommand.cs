@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VoiceToCommandCore
+namespace VoiceToCommand.Core
 {
         public class VoiceCommand : IVoiceCommand
         {

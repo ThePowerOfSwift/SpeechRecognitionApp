@@ -13,27 +13,22 @@ namespace VoiceToCommand
 
         void RegisterCommand(string commandString, IVoiceCommand commandToBeExecuted);
 
-        List<string> GetAvailableCommands(); 
+        List<string> GetAvailableCommands();
 
-        List<string> GetExecutableCommands(); 
+        List<string> GetExecutableCommands();
 
-        void DeregisterCommand(string commandString);
+        void DeRegisterCommand(string commandString);
 
-        void RegisterListeningCompletedCallBack(Action callBack); 
+        void RegisterListeningCompletedCallBack(Action callBack);
 
-        void DeregisterListeningCompletedCallBack(Action callBack); 
+        void DeRegisterListeningCompletedCallBack(Action callBack);
 
         void RegisterUnrecognizableCommandCallBack(Action callBack);
 
-        void DeregisterUnrecognizableCommandCallBack(Action callBack); 
+        void DeRegisterUnrecognizableCommandCallBack(Action callBack);
 
-        void RegisterUnexecuatbleCallBack(Action callBack);
+        void RegisterUnExecutableCallBack(Action callBack);
 
-        void DeregisterUnexecuatbleCallBack(Action callBack); 
-    }
-
-    public interface IVoiceCommandServiceFactory
-    {
-        IVoiceToCommandService Create();
+        void DeRegisterUnExecutableCallBack(Action callBack);
     }
 }

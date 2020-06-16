@@ -10,7 +10,7 @@
     <TemplateGuid>{9ef11e43-1701-4396-8835-8392d57abb70}</TemplateGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VoiceToCommandAndroidLib</RootNamespace>
+    <RootNamespace>VoiceToCommandLib.Droid</RootNamespace>
     <AssemblyName>VoiceToCommandAndroidLib</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <Deterministic>True</Deterministic>
@@ -52,9 +52,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\VoiceToCommandCore\VoiceToCommandCore.csproj">
+    <ProjectReference Include="..\VoiceToCommandCore\VoiceToCommand.Core.csproj">
       <Project>{4A7F347B-F895-4E9B-8F9F-C83D69512558}</Project>
-      <Name>VoiceToCommandCore</Name>
+      <Name>VoiceToCommand.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

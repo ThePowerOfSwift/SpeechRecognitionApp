@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace VoiceToCommandCore
+namespace VoiceToCommand.Core
 {
     public interface IVoiceToCommandService
     {

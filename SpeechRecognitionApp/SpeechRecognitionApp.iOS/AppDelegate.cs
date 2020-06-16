@@ -3,8 +3,8 @@ using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
 using Foundation;
 using UIKit;
-using VoiceToCommandApp.iOS;
-using VoiceToCommandCore;
+using VoiceToCommandLib.iOS;
+using VoiceToCommand.Core;
 
 namespace SpeechRecognitionApp.iOS
 {

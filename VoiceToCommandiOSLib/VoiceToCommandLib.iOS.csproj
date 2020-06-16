@@ -9,7 +9,7 @@
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{a52b8a63-bc84-4b47-910d-692533484892}</TemplateGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>VoiceToCommandiOSLib</RootNamespace>
+    <RootNamespace>VoiceToCommandLib.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>VoiceToCommandiOSLib</AssemblyName>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
@@ -44,9 +44,9 @@
     <Compile Include="VoiceToCommandServiceiOS.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VoiceToCommandCore\VoiceToCommandCore.csproj">
+    <ProjectReference Include="..\VoiceToCommandCore\VoiceToCommand.Core.csproj">
       <Project>{4A7F347B-F895-4E9B-8F9F-C83D69512558}</Project>
-      <Name>VoiceToCommandCore</Name>
+      <Name>VoiceToCommand.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

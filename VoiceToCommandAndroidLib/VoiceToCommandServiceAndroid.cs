@@ -1,9 +1,9 @@
 ﻿using Android.Content;
 using Android.OS;
 using Android.Speech;
-using VoiceToCommandCore;
+using VoiceToCommand.Core;
 
-namespace VoiceToCommandAndroidLib
+namespace VoiceToCommandLib.Droid
 {
     public class VoiceToCommandServiceAndroid : VoiceToCommandService
     {

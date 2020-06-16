@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace VoiceToCommandCore
+namespace VoiceToCommand.Core
 {
     public abstract class VoiceToCommandService : IVoiceToCommandService
     {
