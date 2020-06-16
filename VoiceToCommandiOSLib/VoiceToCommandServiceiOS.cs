@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using AVFoundation;
 using Foundation;
 using Speech;
@@ -97,7 +95,6 @@ namespace VoiceToCommandApp.iOS
                     activityIndicatorView.StartAnimating();
                     
                     _recognizedString = result.BestTranscription.FormattedString.ToLower();
-                    //MessagingCenter.Send<ISpeechToTextService, string>(this, "STT", _recognizedString);
                     _timer.Invalidate();
                     _timer = null;
                     _timer = NSTimer.CreateRepeatingScheduledTimer(2, delegate
@@ -121,7 +118,6 @@ namespace VoiceToCommandApp.iOS
                 }
                 if (error != null || isFinal)
                 {
-                    //MessagingCenter.Send<ISpeechToTextService>(this, "Final");
                     StopRecordingAndRecognition(audioSession);
                 }
             });
@@ -164,60 +160,5 @@ namespace VoiceToCommandApp.iOS
         {
             throw new NotImplementedException();
         }
-
-        //public void RegisterCommand(string commandString, IVoiceCommand commandToBeExecuted)
-        //{
-        //    AllRegisteredCommands.Add(commandString.ToLower(), commandToBeExecuted);
-        //}
-
-        //public void DeregisterCommand(string commandString)
-        //{
-        //    AllRegisteredCommands.Remove(commandString);
-        //}
-
-        //public List<string> GetAvailableCommands()
-        //{
-        //    return AllRegisteredCommands.Keys.ToList();
-        //}
-
-        //public List<string> GetExecutableCommands()
-        //{
-        //    return (AllRegisteredCommands.Where(item => item.Value.CanExecute()).Select(item => item.Key)).ToList();
-        //}
-
-        //public void DeRegisterCommand(string commandString)
-        //{
-        //    AllRegisteredCommands.Remove(commandString);
-        //}
-
-        //public void RegisterListeningCompletedCallBack(Action callBack)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public void DeRegisterListeningCompletedCallBack(Action callBack)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public void RegisterUnrecognizableCommandCallBack(Action callBack)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public void DeRegisterUnrecognizableCommandCallBack(Action callBack)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public void RegisterUnExecutableCallBack(Action callBack)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public void DeRegisterUnExecutableCallBack(Action callBack)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }
