@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Autofac;
+﻿using Autofac;
 using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
 using Foundation;
 using UIKit;
 using VoiceToCommandApp.iOS;
-using VoiceToCommandLib;
+using VoiceToCommandCore;
 
 namespace SpeechRecognitionApp.iOS
 {

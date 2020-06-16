@@ -1,6 +1,6 @@
 ﻿using System;
 using Xamarin.Forms;
-using VoiceToCommandLib;
+using VoiceToCommandCore;
 using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
 using CommonServiceLocator;

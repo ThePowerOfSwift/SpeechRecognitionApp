@@ -5,7 +5,7 @@ using AVFoundation;
 using Foundation;
 using Speech;
 using UIKit;
-using VoiceToCommandLib;
+using VoiceToCommandCore;
 
 namespace VoiceToCommandApp.iOS
 {

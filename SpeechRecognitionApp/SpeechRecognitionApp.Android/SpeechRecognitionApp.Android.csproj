@@ -102,13 +102,13 @@
       <Project>{bfc4f1d7-d18d-4e18-82ff-435754c724e1}</Project>
       <Name>VoiceToCommandAndroidLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\VoiceToCommandLib\VoiceToCommandLib.csproj">
-      <Project>{3b400858-0e32-4411-a388-d521456e9b6c}</Project>
-      <Name>VoiceToCommandLib</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SpeechRecognitionApp\SpeechRecognitionApp.csproj">
       <Project>{0E5D2F95-6121-4EA0-89FF-C9000A134E9B}</Project>
       <Name>SpeechRecognitionApp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\VoiceToCommandCore\VoiceToCommandCore.csproj">
+      <Project>{4A7F347B-F895-4E9B-8F9F-C83D69512558}</Project>
+      <Name>VoiceToCommandCore</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

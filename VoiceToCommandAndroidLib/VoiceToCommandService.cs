@@ -4,7 +4,7 @@ using System.Linq;
 using Android.Content;
 using Android.OS;
 using Android.Speech;
-using VoiceToCommandLib;
+using VoiceToCommandCore;
 
 namespace VoiceToCommandAndroidLib
 {
