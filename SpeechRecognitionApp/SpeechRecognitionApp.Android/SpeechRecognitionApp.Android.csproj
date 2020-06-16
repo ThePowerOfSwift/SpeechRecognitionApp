@@ -16,7 +16,6 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
@@ -108,7 +107,7 @@
       <Name>VoiceToCommandLib</Name>
     </ProjectReference>
     <ProjectReference Include="..\SpeechRecognitionApp\SpeechRecognitionApp.csproj">
-      <Project>{22E8A217-A253-472B-9FAB-5ED4C0659E76}</Project>
+      <Project>{0E5D2F95-6121-4EA0-89FF-C9000A134E9B}</Project>
       <Name>SpeechRecognitionApp</Name>
     </ProjectReference>
   </ItemGroup>
