@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using Autofac;
+using Autofac.Extras.CommonServiceLocator;
+using CommonServiceLocator;
 using Foundation;
 using UIKit;
+using VoiceToCommandApp.iOS;
+using VoiceToCommandLib;
 
 namespace SpeechRecognitionApp.iOS
 {
@@ -22,6 +26,12 @@ namespace SpeechRecognitionApp.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            var builder = new ContainerBuilder();
+            builder.RegisterType<VoiceToCommandService>().As<IVoiceToCommandService>();
+            var container = builder.Build();
+            var serviceLocator = new AutofacServiceLocator(container);
+            ServiceLocator.SetLocatorProvider(() => serviceLocator);
+
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 

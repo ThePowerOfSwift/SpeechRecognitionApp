@@ -80,7 +80,6 @@ namespace VoiceToCommandAndroidLib
             return (AllRegisteredCommands.Where(item => item.Value.CanExecute()).Select(item => item.Key)).ToList();
         }
 
-       
         private void RecListener_Ready(object sender, Bundle e) => System.Diagnostics.Debug.WriteLine(nameof(RecListener_Ready));
 
         private void RecListener_BeginSpeech()

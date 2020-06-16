@@ -29,7 +29,6 @@ namespace SpeechRecognitionApp
                 MyButton.Source = ImageSource.FromResource("SpeechRecognitionApp.Images.mic.png");
                 CheckPermissionStatus();
                 AvailableCommands();
-                
             }
             catch (Exception ex)
             {
@@ -118,13 +117,6 @@ namespace SpeechRecognitionApp
                 recon.Text = ex.Message;
             }
 
-            if (Device.RuntimePlatform == Device.iOS)
-            {
-                MyButton.IsEnabled = false;
-            }
-
         }
-
-       
     }
 }
