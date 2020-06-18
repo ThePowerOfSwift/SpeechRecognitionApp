@@ -34,6 +34,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\VoiceToCommandCore\VoiceToCommandCore.csproj" />
+    <ProjectReference Include="..\..\VoiceToCommandCore\VoiceToCommand.Core.csproj" />
   </ItemGroup>
 </Project>

@@ -134,9 +134,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\VoiceToCommandiOSLib\VoiceToCommandiOSLib.csproj">
+    <ProjectReference Include="..\..\VoiceToCommandiOSLib\VoiceToCommandLib.iOS.csproj">
       <Project>{6115f300-406e-400f-962e-7d5cf35d55db}</Project>
-      <Name>VoiceToCommandiOSLib</Name>
+      <Name>VoiceToCommandLib.iOS</Name>
       <IsAppExtension>false</IsAppExtension>
       <IsWatchApp>false</IsWatchApp>
     </ProjectReference>
@@ -144,9 +144,9 @@
       <Project>{0E5D2F95-6121-4EA0-89FF-C9000A134E9B}</Project>
       <Name>SpeechRecognitionApp</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\VoiceToCommandCore\VoiceToCommandCore.csproj">
+    <ProjectReference Include="..\..\VoiceToCommandCore\VoiceToCommand.Core.csproj">
       <Project>{4A7F347B-F895-4E9B-8F9F-C83D69512558}</Project>
-      <Name>VoiceToCommandCore</Name>
+      <Name>VoiceToCommand.Core</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

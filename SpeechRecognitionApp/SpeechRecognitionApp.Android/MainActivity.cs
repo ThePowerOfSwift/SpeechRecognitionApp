@@ -5,8 +5,8 @@ using Android.OS;
 using Autofac;
 using CommonServiceLocator;
 using Autofac.Extras.CommonServiceLocator;
-using VoiceToCommandAndroidLib;
-using VoiceToCommandCore;
+using VoiceToCommandLib.Droid;
+using VoiceToCommand.Core;
 
 namespace SpeechRecognitionApp.Droid
 {

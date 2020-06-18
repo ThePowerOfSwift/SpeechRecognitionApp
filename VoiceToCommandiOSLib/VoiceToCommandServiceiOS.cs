@@ -5,13 +5,12 @@ using AVFoundation;
 using Foundation;
 using Speech;
 using UIKit;
-using VoiceToCommandCore;
+using VoiceToCommand.Core;
 
-namespace VoiceToCommandApp.iOS
+namespace VoiceToCommandLib.iOS
 {
     public class VoiceToCommandServiceiOS : VoiceToCommandService
     {
-        //Need to give Permission
         private AVAudioEngine _audioEngine = new AVAudioEngine();
         private SFSpeechRecognizer _speechRecognizer = new SFSpeechRecognizer();
         private SFSpeechAudioBufferRecognitionRequest _recognitionRequest;
