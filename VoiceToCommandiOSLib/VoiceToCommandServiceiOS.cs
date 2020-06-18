@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using AVFoundation;
 using Foundation;
 using Speech;
@@ -62,7 +64,6 @@ namespace VoiceToCommandApp.iOS
 
             _recognitionTask?.Cancel();
             _recognitionTask = null;
-            UIActivityIndicatorView activityIndicatorView = new UIActivityIndicatorView(UIActivityIndicatorViewStyle.Large);
             
             var audioSession = AVAudioSession.SharedInstance();
             NSError nsError;
@@ -86,22 +87,16 @@ namespace VoiceToCommandApp.iOS
 
             _audioEngine.Prepare();
             _audioEngine.StartAndReturnError(out nsError);
+            
 
             _recognitionTask = _speechRecognizer.GetRecognitionTask(_recognitionRequest, (result, error) =>
             {
                 var isFinal = false;
-                if (result != null)
+                if (result != null && _recognitionRequest != null)
                 {
-                    activityIndicatorView.StartAnimating();
-                    
                     _recognizedString = result.BestTranscription.FormattedString.ToLower();
                     _timer.Invalidate();
                     _timer = null;
-                    _timer = NSTimer.CreateRepeatingScheduledTimer(2, delegate
-                    {
-                        DidFinishTalk();
-                    });
-
 
                     System.Diagnostics.Debug.WriteLine(_recognizedString);
                     if (AllRegisteredCommands.ContainsKey(_recognizedString))
@@ -112,26 +107,24 @@ namespace VoiceToCommandApp.iOS
                             command.Execute();
                         }
                     }
+                  
+                    isFinal = true;
                     StopRecordingAndRecognition(audioSession);
-                    activityIndicatorView.StopAnimating();
-
-                }
+                }   
                 if (error != null || isFinal)
                 {
                     StopRecordingAndRecognition(audioSession);
                 }
-            });
+        });
         }
 
         private void DidFinishTalk()
         {
-           // MessagingCenter.Send<ISpeechToTextService>(this, "Final");
             if (_timer != null)
             {
                 _timer.Invalidate();
                 _timer = null;
             }
-
             if (_audioEngine.Running)
             {
                 StopRecordingAndRecognition();

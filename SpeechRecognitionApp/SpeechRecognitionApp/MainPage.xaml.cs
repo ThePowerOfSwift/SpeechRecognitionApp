@@ -34,7 +34,6 @@ namespace SpeechRecognitionApp
             {
                 recon.Text = ex.Message;
             }
-
         }
 
         private void CloseApplication()
