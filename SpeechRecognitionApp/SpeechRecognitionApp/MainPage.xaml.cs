@@ -92,7 +92,6 @@ namespace SpeechRecognitionApp
                 if (status == PermissionStatus.Granted)
                 {
                     _isPermissionGranted = true;
-                    MyButton_Pressed(this,null);
                 }
 
             }

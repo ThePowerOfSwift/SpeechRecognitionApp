@@ -5,6 +5,7 @@ using Android.OS;
 using Autofac;
 using CommonServiceLocator;
 using Autofac.Extras.CommonServiceLocator;
+using Plugin.Permissions;
 using VoiceToCommandLib.Droid;
 using VoiceToCommand.Core;
 
@@ -35,7 +36,7 @@ namespace SpeechRecognitionApp.Droid
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }

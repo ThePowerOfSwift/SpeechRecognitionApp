@@ -19,7 +19,15 @@ namespace VoiceToCommandLib.Droid
 
         public override void StartListening()
         {
-            StartRecordingAndRecognizing();
+            if (SpeechRecognizer.IsRecognitionAvailable(Android.App.Application.Context))
+            {
+                StartRecordingAndRecognizing();
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("Recognition isn't available'");
+            }
+            
         }
 
         private void StartRecordingAndRecognizing()
