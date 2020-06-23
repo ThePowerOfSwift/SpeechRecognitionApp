@@ -3,7 +3,7 @@ using Android.OS;
 using Android.Speech;
 using VoiceToCommand.Core;
 
-namespace VoiceToCommandLib.Droid
+namespace VoiceToCommand.Droid
 {
     public class VoiceToCommandServiceAndroid : VoiceToCommandService
     {

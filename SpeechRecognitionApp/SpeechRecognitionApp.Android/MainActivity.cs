@@ -6,7 +6,7 @@ using Autofac;
 using CommonServiceLocator;
 using Autofac.Extras.CommonServiceLocator;
 using Plugin.Permissions;
-using VoiceToCommandLib.Droid;
+using VoiceToCommand.Droid;
 using VoiceToCommand.Core;
 
 namespace SpeechRecognitionApp.Droid

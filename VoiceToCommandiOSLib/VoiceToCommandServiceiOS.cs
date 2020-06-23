@@ -7,7 +7,7 @@ using Speech;
 using UIKit;
 using VoiceToCommand.Core;
 
-namespace VoiceToCommandLib.iOS
+namespace VoiceToCommand.iOS
 {
     public class VoiceToCommandServiceiOS : VoiceToCommandService
     {

@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpeechRecognitionApp", "Spe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VoiceToCommand", "VoiceToCommand\VoiceToCommand\VoiceToCommand.csproj", "{CCD62399-5024-409E-A211-2B76E0A5AFCC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoiceToCommandLib.Droid", "VoiceToCommandAndroidLib\VoiceToCommandLib.Droid.csproj", "{BFC4F1D7-D18D-4E18-82FF-435754C724E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoiceToCommand.Droid", "VoiceToCommandAndroidLib\VoiceToCommand.Droid.csproj", "{BFC4F1D7-D18D-4E18-82FF-435754C724E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoiceToCommandLib.iOS", "VoiceToCommandiOSLib\VoiceToCommandLib.iOS.csproj", "{6115F300-406E-400F-962E-7D5CF35D55DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoiceToCommand.iOS", "VoiceToCommandiOSLib\VoiceToCommand.iOS.csproj", "{6115F300-406E-400F-962E-7D5CF35D55DB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoiceToCommand.Core", "VoiceToCommandCore\VoiceToCommand.Core.csproj", "{4A7F347B-F895-4E9B-8F9F-C83D69512558}"
 EndProject

@@ -134,9 +134,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\VoiceToCommandiOSLib\VoiceToCommandLib.iOS.csproj">
+    <ProjectReference Include="..\..\VoiceToCommandiOSLib\VoiceToCommand.iOS.csproj">
       <Project>{6115f300-406e-400f-962e-7d5cf35d55db}</Project>
-      <Name>VoiceToCommandLib.iOS</Name>
+      <Name>VoiceToCommand.iOS</Name>
       <IsAppExtension>false</IsAppExtension>
       <IsWatchApp>false</IsWatchApp>
     </ProjectReference>
