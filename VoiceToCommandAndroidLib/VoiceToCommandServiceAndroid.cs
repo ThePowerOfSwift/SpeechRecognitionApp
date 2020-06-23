@@ -1,4 +1,5 @@
 ﻿using Android.Content;
+using Android.App;
 using Android.OS;
 using Android.Speech;
 using VoiceToCommand.Core;
@@ -19,34 +20,44 @@ namespace VoiceToCommand.Droid
 
         public override void StartListening()
         {
-            if (SpeechRecognizer.IsRecognitionAvailable(Android.App.Application.Context))
+            if (SpeechRecognizer.IsRecognitionAvailable(Application.Context))
             {
-                StartRecordingAndRecognizing();
+                StartRecording();
             }
             else
             {
                 System.Diagnostics.Debug.WriteLine("Recognition isn't available'");
             }
-            
         }
 
-        private void StartRecordingAndRecognizing()
+        private void StartRecording()
         {
-            var recListener = new RecognitionListener();
-            recListener.BeginSpeech += RecListener_BeginSpeech;
-            recListener.EndSpeech += RecListener_EndSpeech;
-            recListener.Error += RecListener_Error;
-            recListener.Ready += RecListener_Ready;
-            recListener.Recognized += RecListener_Recognized;
+            var recListener = GetRecognitionListener();
 
-            Recognizer = SpeechRecognizer.CreateSpeechRecognizer(Android.App.Application.Context);
+            Recognizer = SpeechRecognizer.CreateSpeechRecognizer(Application.Context);
             Recognizer.SetRecognitionListener(recListener);
 
+            InitialiseSpeechIntent();
+            recListener.IsAlreadyRecognized = false;
+            Recognizer.StartListening(SpeechIntent);
+        }
+
+        private RecognitionListener GetRecognitionListener()
+        {
+            var recListener = new RecognitionListener();
+            recListener.BeginSpeech += RecListenerBeginSpeech;
+            recListener.EndSpeech += RecListenerEndSpeech;
+            recListener.Error += RecListenerError;
+            recListener.Ready += RecListenerReady;
+            recListener.Recognized += RecListenerRecognized;
+            return recListener;
+        }
+
+        private void InitialiseSpeechIntent()
+        {
             SpeechIntent = new Intent(RecognizerIntent.ActionRecognizeSpeech);
             SpeechIntent.PutExtra(RecognizerIntent.ExtraLanguageModel, RecognizerIntent.LanguageModelFreeForm);
-            SpeechIntent.PutExtra(RecognizerIntent.ExtraCallingPackage, Android.App.Application.Context.PackageName);
-            recListener.IsRecognizedAlready = false;
-            Recognizer.StartListening(SpeechIntent);
+            SpeechIntent.PutExtra(RecognizerIntent.ExtraCallingPackage, Application.Context.PackageName);
         }
 
         public override void StopListening()
@@ -58,28 +69,27 @@ namespace VoiceToCommand.Droid
             }
         }
 
-        private void RecListener_Ready(object sender, Bundle e) => System.Diagnostics.Debug.WriteLine(nameof(RecListener_Ready));
+        private void RecListenerReady(object sender, Bundle e) => System.Diagnostics.Debug.WriteLine(nameof(RecListenerReady));
 
-        private void RecListener_BeginSpeech()
+        private void RecListenerBeginSpeech()
         {
             _isRecording = true;
-            System.Diagnostics.Debug.WriteLine(nameof(RecListener_BeginSpeech));
+            System.Diagnostics.Debug.WriteLine(nameof(RecListenerBeginSpeech));
         }
 
-        private void RecListener_EndSpeech()
+        private void RecListenerEndSpeech()
         {
             _isRecording = false;
-            System.Diagnostics.Debug.WriteLine(nameof(RecListener_EndSpeech));
+            System.Diagnostics.Debug.WriteLine(nameof(RecListenerEndSpeech));
         }
 
-        private void RecListener_Error(object sender, SpeechRecognizerError e)
+        private void RecListenerError(object sender, SpeechRecognizerError e)
         {
             _isRecording = false;
             System.Diagnostics.Debug.WriteLine(e.ToString());
-
         }
 
-        private void RecListener_Recognized(object sender, string recognized)
+        private void RecListenerRecognized(object sender, string recognized)
         {
             _isRecording = false;
             recognized = recognized.ToLower();
@@ -92,7 +102,6 @@ namespace VoiceToCommand.Droid
                     command.Execute();
                 }
             }
-
         }
     }
 }
