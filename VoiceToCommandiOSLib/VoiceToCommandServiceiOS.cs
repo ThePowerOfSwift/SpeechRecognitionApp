@@ -57,7 +57,7 @@ namespace VoiceToCommand.iOS
             var inputNode = _audioEngine.InputNode;
             if (inputNode == null)
             {
-                throw new Exception("Input Node is null exception");
+                throw new Exception("Input Node is null");
             }
 
             var recordingFormat = inputNode.GetBusOutputFormat(0);
