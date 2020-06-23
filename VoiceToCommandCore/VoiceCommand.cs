@@ -5,6 +5,11 @@ namespace VoiceToCommand.Core
         public class VoiceCommand : IVoiceCommand
         {
             private Action _action;
+
+            /// <summary>
+            /// Tells about what needs to be done for given command
+            /// </summary>
+            /// <param name="action">Takes action as parameter</param>
             public VoiceCommand(Action action)
             {
                 _action = action;

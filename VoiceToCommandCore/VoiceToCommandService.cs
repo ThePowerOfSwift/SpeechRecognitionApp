@@ -4,10 +4,16 @@ using System.Linq;
 
 namespace VoiceToCommand.Core
 {
+    /// <summary>
+    /// Represents collection of methods which can be used by Android and iOS 
+    /// </summary>
     public abstract class VoiceToCommandService : IVoiceToCommandService
     {
         protected IDictionary<string, IVoiceCommand> AllRegisteredCommands;
 
+        /// <summary>
+        /// Adds commands to dictionary
+        /// </summary>
         public VoiceToCommandService()
         {
             AllRegisteredCommands = new Dictionary<string, IVoiceCommand>();
@@ -27,49 +33,15 @@ namespace VoiceToCommand.Core
             AllRegisteredCommands.Add(commandString.ToLower(), commandToBeExecuted);
         }
 
-        public List<string> GetAvailableCommands()
+        public IList<string> GetAvailableCommands()
         {
             return AllRegisteredCommands.Keys.ToList();
         }
 
-        public List<string> GetExecutableCommands()
+        public IList<string> GetExecutableCommands()
         {
             return (AllRegisteredCommands.Where(item => item.Value.CanExecute()).Select(item => item.Key)).ToList();
         }
 
-        public void DeRegisterCommand(string commandString)
-        {
-            AllRegisteredCommands.Remove(commandString);
-        }
-
-        public void RegisterListeningCompletedCallBack(Action callBack)
-        {
-            //Need to implement
-        }
-
-        public void DeRegisterListeningCompletedCallBack(Action callBack)
-        {
-            //Need to implement
-        }
-
-        public void RegisterUnrecognizableCommandCallBack(Action callBack)
-        {
-            //Need to implement
-        }
-
-        public void DeRegisterUnrecognizableCommandCallBack(Action callBack)
-        {
-            //Need to implement
-        }
-
-        public void RegisterUnExecutableCallBack(Action callBack)
-        {
-            //Need to implement
-        }
-
-        public void DeRegisterUnExecutableCallBack(Action callBack)
-        {
-            //Need to implement
-        }
     }
 }
