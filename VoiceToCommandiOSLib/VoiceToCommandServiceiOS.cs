@@ -13,8 +13,34 @@ namespace VoiceToCommand.iOS
         private SFSpeechAudioBufferRecognitionRequest _recognitionRequest;
         private SFSpeechRecognitionTask _recognitionTask;
         private string _recognizedString;
+        private bool _isAuthorized;
         private NSTimer _timer;
-        
+
+
+        public VoiceToCommandServiceiOS()
+        {
+            AskForSpeechPermission();
+        }
+
+        private void AskForSpeechPermission()
+        {
+            SFSpeechRecognizer.RequestAuthorization((SFSpeechRecognizerAuthorizationStatus status) =>
+            {
+                switch (status)
+                {
+                    case SFSpeechRecognizerAuthorizationStatus.Authorized:
+                        _isAuthorized = true;
+                        break;
+                    case SFSpeechRecognizerAuthorizationStatus.Denied:
+                        break;
+                    case SFSpeechRecognizerAuthorizationStatus.NotDetermined:
+                        break;
+                    case SFSpeechRecognizerAuthorizationStatus.Restricted:
+                        break;
+                }
+            });
+        }
+
 
 
         public override void StartListening()
@@ -23,7 +49,17 @@ namespace VoiceToCommand.iOS
             {
                 StopRecording();
             }
-            StartRecording();
+
+            if (_isAuthorized)
+            {
+                StartRecording();
+
+            }
+            else
+            {
+                throw new Exception();
+            }
+            
         }
 
         private void StopRecording(AVAudioSession aVAudioSession = null)
@@ -100,26 +136,28 @@ namespace VoiceToCommand.iOS
         private void PerformRecognitionTask(AVAudioSession audioSession)
         {
             _recognitionTask = _speechRecognizer.GetRecognitionTask(_recognitionRequest, (result, error) =>
-            {
-                var isFinal = false;
-                if (result != null && _recognitionRequest != null)
                 {
-                    _recognizedString = result.BestTranscription.FormattedString.ToLower();
-                    _timer.Invalidate();
-                    _timer = null;
+                    var isFinal = false;
+                    if (result != null && _recognitionRequest != null)
+                    {
+                        _recognizedString = result.BestTranscription.FormattedString.ToLower();
+                        _timer.Invalidate();
+                        _timer = null;
 
-                    System.Diagnostics.Debug.WriteLine(_recognizedString);
-                    ExecuteRecognizedCommand();
+                        System.Diagnostics.Debug.WriteLine(_recognizedString);
+                        ExecuteRecognizedCommand();
 
-                    isFinal = true;
-                    StopRecording(audioSession);
-                }
+                        isFinal = true;
+                        StopRecording(audioSession);
+                    }
 
-                if (error != null || isFinal)
-                {
-                    StopRecording(audioSession);
-                }
-            });
+                    if (error != null || isFinal)
+                    {
+                        StopRecording(audioSession);
+                    }
+                });
+           
+            
         }
 
         private void ExecuteRecognizedCommand()
