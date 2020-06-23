@@ -79,11 +79,11 @@ namespace VoiceToCommand.Droid
 
         private void DeRegisterRecognitionListenerHandlers()
         {
-            _recognitionListener.BeginSpeech += ListenerOnBeginSpeechHandler;
-            _recognitionListener.EndSpeech += ListenerOnEndOfSpeechHandler;
-            _recognitionListener.Error += ListenerOnErrorHandler;
-            _recognitionListener.Ready += ListenerOnReadyForSpeechHandler;
-            _recognitionListener.Recognized += ListenerOnRecognizedHandler;
+            _recognitionListener.BeginSpeech -= ListenerOnBeginSpeechHandler;
+            _recognitionListener.EndSpeech -= ListenerOnEndOfSpeechHandler;
+            _recognitionListener.Error -= ListenerOnErrorHandler;
+            _recognitionListener.Ready -= ListenerOnReadyForSpeechHandler;
+            _recognitionListener.Recognized -= ListenerOnRecognizedHandler;
         }
 
         private void ListenerOnReadyForSpeechHandler(object sender, Bundle e) => Debug.WriteLine(nameof(ListenerOnReadyForSpeechHandler));
