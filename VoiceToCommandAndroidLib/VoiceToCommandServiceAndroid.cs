@@ -1,6 +1,5 @@
 ﻿using Android.Content;
 using Android.App;
-using Android.OS;
 using Android.Speech;
 using VoiceToCommand.Core;
 using Debug=System.Diagnostics.Debug;
@@ -53,11 +52,10 @@ namespace VoiceToCommand.Droid
 
         private void RegisterRecognitionListenerHandlers()
         {
-            _recognitionListener.BeginSpeech += ListenerOnBeginSpeechHandler;
-            _recognitionListener.EndSpeech += ListenerOnEndOfSpeechHandler;
-            _recognitionListener.Error += ListenerOnErrorHandler;
-            _recognitionListener.Ready += ListenerOnReadyForSpeechHandler;
-            _recognitionListener.Recognized += ListenerOnRecognizedHandler;
+            _recognitionListener.BeginSpeech += OnBeginSpeechHandler;
+            _recognitionListener.EndSpeech += OnEndOfSpeechHandler;
+            _recognitionListener.Error += OnErrorHandler;
+            _recognitionListener.Recognized += OnRecognizedHandler;
         }
 
         private void InitializeSpeechIntent()
@@ -79,32 +77,29 @@ namespace VoiceToCommand.Droid
 
         private void DeRegisterRecognitionListenerHandlers()
         {
-            _recognitionListener.BeginSpeech -= ListenerOnBeginSpeechHandler;
-            _recognitionListener.EndSpeech -= ListenerOnEndOfSpeechHandler;
-            _recognitionListener.Error -= ListenerOnErrorHandler;
-            _recognitionListener.Ready -= ListenerOnReadyForSpeechHandler;
-            _recognitionListener.Recognized -= ListenerOnRecognizedHandler;
+            _recognitionListener.BeginSpeech -= OnBeginSpeechHandler;
+            _recognitionListener.EndSpeech -= OnEndOfSpeechHandler;
+            _recognitionListener.Error -= OnErrorHandler;
+            _recognitionListener.Recognized -= OnRecognizedHandler;
         }
 
-        private void ListenerOnReadyForSpeechHandler(object sender, Bundle e) => Debug.WriteLine(nameof(ListenerOnReadyForSpeechHandler));
-
-        private void ListenerOnBeginSpeechHandler()
+        private void OnBeginSpeechHandler()
         {
             _isRecording = true;
         }
 
-        private void ListenerOnEndOfSpeechHandler()
+        private void OnEndOfSpeechHandler()
         {
             _isRecording = false;
         }
 
-        private void ListenerOnErrorHandler(object sender, SpeechRecognizerError e)
+        private void OnErrorHandler(object sender, SpeechRecognizerError e)
         {
             _isRecording = false;
             Debug.WriteLine(e.ToString());
         }
 
-        private void ListenerOnRecognizedHandler(object sender, string recognized)
+        private void OnRecognizedHandler(object sender, string recognized)
         {
             _isRecording = false;
             recognized = recognized.ToLower();
