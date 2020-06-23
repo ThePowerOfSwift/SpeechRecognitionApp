@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using AVFoundation;
 using Foundation;
 using Speech;
-using UIKit;
 using VoiceToCommand.Core;
 
 namespace VoiceToCommand.iOS
@@ -48,13 +45,12 @@ namespace VoiceToCommand.iOS
         {
             if (_audioEngine.Running)
             {
-                StopRecordingAndRecognition();
-
+                StopRecording();
             }
-            StartRecordingAndRecognizing();
+            StartRecording();
         }
 
-        private void StartRecordingAndRecognizing()
+        private void StartRecording()
         {
             _timer = NSTimer.CreateRepeatingScheduledTimer(2, delegate
             {
@@ -63,14 +59,9 @@ namespace VoiceToCommand.iOS
 
             _recognitionTask?.Cancel();
             _recognitionTask = null;
-            
-            var audioSession = AVAudioSession.SharedInstance();
+
             NSError nsError;
-            nsError = audioSession.SetCategory(AVAudioSessionCategory.PlayAndRecord);
-            audioSession.SetMode(AVAudioSession.ModeDefault, out nsError);
-            nsError = audioSession.SetActive(true, AVAudioSessionSetActiveOptions.NotifyOthersOnDeactivation);
-            audioSession.OverrideOutputAudioPort(AVAudioSessionPortOverride.Speaker, out nsError);
-            _recognitionRequest = new SFSpeechAudioBufferRecognitionRequest();
+            var audioSession = GetAudioSessionComponent();
 
             var inputNode = _audioEngine.InputNode;
             if (inputNode == null)
@@ -86,8 +77,24 @@ namespace VoiceToCommand.iOS
 
             _audioEngine.Prepare();
             _audioEngine.StartAndReturnError(out nsError);
-            
 
+            PerformRecognitionTask(audioSession);
+        }
+
+        private AVAudioSession GetAudioSessionComponent()
+        {
+            var audioSession = AVAudioSession.SharedInstance();
+            NSError nsError;
+            nsError = audioSession.SetCategory(AVAudioSessionCategory.PlayAndRecord);
+            audioSession.SetMode(AVAudioSession.ModeDefault, out nsError);
+            nsError = audioSession.SetActive(true, AVAudioSessionSetActiveOptions.NotifyOthersOnDeactivation);
+            audioSession.OverrideOutputAudioPort(AVAudioSessionPortOverride.Speaker, out nsError);
+            _recognitionRequest = new SFSpeechAudioBufferRecognitionRequest();
+            return audioSession;
+        }
+
+        private void PerformRecognitionTask(AVAudioSession audioSession)
+        {
             _recognitionTask = _speechRecognizer.GetRecognitionTask(_recognitionRequest, (result, error) =>
             {
                 var isFinal = false;
@@ -98,23 +105,29 @@ namespace VoiceToCommand.iOS
                     _timer = null;
 
                     System.Diagnostics.Debug.WriteLine(_recognizedString);
-                    if (AllRegisteredCommands.ContainsKey(_recognizedString))
-                    {
-                        var command = AllRegisteredCommands[_recognizedString];
-                        if (command.CanExecute())
-                        {
-                            command.Execute();
-                        }
-                    }
-                  
+                    ExecuteCommand();
+
                     isFinal = true;
-                    StopRecordingAndRecognition(audioSession);
-                }   
+                    StopRecording(audioSession);
+                }
+
                 if (error != null || isFinal)
                 {
-                    StopRecordingAndRecognition(audioSession);
+                    StopRecording(audioSession);
                 }
-        });
+            });
+        }
+
+        private void ExecuteCommand()
+        {
+            if (AllRegisteredCommands.ContainsKey(_recognizedString))
+            {
+                var command = AllRegisteredCommands[_recognizedString];
+                if (command.CanExecute())
+                {
+                    command.Execute();
+                }
+            }
         }
 
         private void DidFinishTalk()
@@ -126,11 +139,11 @@ namespace VoiceToCommand.iOS
             }
             if (_audioEngine.Running)
             {
-                StopRecordingAndRecognition();
+                StopRecording();
             }
         }
 
-        private void StopRecordingAndRecognition(AVAudioSession aVAudioSession = null)
+        private void StopRecording(AVAudioSession aVAudioSession = null)
         {
             if (_audioEngine.Running)
             {
@@ -145,12 +158,12 @@ namespace VoiceToCommand.iOS
 
         public override void StopListening()
         {
-            StopRecordingAndRecognition();
+            StopRecording();
         }
 
         public override bool IsListening()
         {
-            throw new NotImplementedException();
+            return _audioEngine.Running;
         }
     }
 }

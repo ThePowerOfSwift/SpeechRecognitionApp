@@ -13,7 +13,7 @@ namespace VoiceToCommand.Droid
         public event Action EndSpeech;
         public event EventHandler<string> Recognized;
         public event EventHandler<SpeechRecognizerError> Error;
-        public bool IsRecognizedAlready { get; set; }
+        public bool IsAlreadyRecognized { get; set; }
 
         public RecognitionListener() : base() { }
 
@@ -27,11 +27,11 @@ namespace VoiceToCommand.Droid
         {
             var matches = results.GetStringArrayList(SpeechRecognizer.ResultsRecognition);
             System.Diagnostics.Debug.WriteLine(matches.Count);
-            if (!IsRecognizedAlready)
+            if (!IsAlreadyRecognized)
             {
                 if (matches != null && matches.Count > 0)
                 {
-                    IsRecognizedAlready = true;
+                    IsAlreadyRecognized = true;
                     Recognized?.Invoke(this, matches[0]);
                 }
             }
