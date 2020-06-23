@@ -13,33 +13,9 @@ namespace VoiceToCommand.iOS
         private SFSpeechAudioBufferRecognitionRequest _recognitionRequest;
         private SFSpeechRecognitionTask _recognitionTask;
         private string _recognizedString;
-        private bool _isAuthorized;
         private NSTimer _timer;
         
 
-        public VoiceToCommandServiceiOS()
-        {
-            AskForSpeechPermission();
-        }
-
-        private void AskForSpeechPermission()
-        {
-            SFSpeechRecognizer.RequestAuthorization((SFSpeechRecognizerAuthorizationStatus status) =>
-            {
-                switch (status)
-                {
-                    case SFSpeechRecognizerAuthorizationStatus.Authorized:
-                        _isAuthorized = true;
-                        break;
-                    case SFSpeechRecognizerAuthorizationStatus.Denied:
-                        break;
-                    case SFSpeechRecognizerAuthorizationStatus.NotDetermined:
-                        break;
-                    case SFSpeechRecognizerAuthorizationStatus.Restricted:
-                        break;
-                }
-            });
-        }
 
         public override void StartListening()
         {
@@ -49,6 +25,21 @@ namespace VoiceToCommand.iOS
             }
             StartRecording();
         }
+
+        private void StopRecording(AVAudioSession aVAudioSession = null)
+        {
+            if (_audioEngine.Running)
+            {
+                _audioEngine.Stop();
+                _audioEngine.InputNode.RemoveTapOnBus(0);
+                _recognitionTask?.Cancel();
+                _recognitionRequest.EndAudio();
+                _recognitionRequest = null;
+                _recognitionTask = null;
+            }
+        }
+
+
 
         private void StartRecording()
         {
@@ -66,7 +57,7 @@ namespace VoiceToCommand.iOS
             var inputNode = _audioEngine.InputNode;
             if (inputNode == null)
             {
-                throw new Exception();
+                throw new Exception("Input Node is null exception");
             }
 
             var recordingFormat = inputNode.GetBusOutputFormat(0);
@@ -79,6 +70,19 @@ namespace VoiceToCommand.iOS
             _audioEngine.StartAndReturnError(out nsError);
 
             PerformRecognitionTask(audioSession);
+        }
+
+        private void DidFinishTalk()
+        {
+            if (_timer != null)
+            {
+                _timer.Invalidate();
+                _timer = null;
+            }
+            if (_audioEngine.Running)
+            {
+                StopRecording();
+            }
         }
 
         private AVAudioSession GetAudioSessionComponent()
@@ -105,7 +109,7 @@ namespace VoiceToCommand.iOS
                     _timer = null;
 
                     System.Diagnostics.Debug.WriteLine(_recognizedString);
-                    ExecuteCommand();
+                    ExecuteRecognizedCommand();
 
                     isFinal = true;
                     StopRecording(audioSession);
@@ -118,7 +122,7 @@ namespace VoiceToCommand.iOS
             });
         }
 
-        private void ExecuteCommand()
+        private void ExecuteRecognizedCommand()
         {
             if (AllRegisteredCommands.ContainsKey(_recognizedString))
             {
@@ -130,30 +134,10 @@ namespace VoiceToCommand.iOS
             }
         }
 
-        private void DidFinishTalk()
+        
+        public override bool IsListening()
         {
-            if (_timer != null)
-            {
-                _timer.Invalidate();
-                _timer = null;
-            }
-            if (_audioEngine.Running)
-            {
-                StopRecording();
-            }
-        }
-
-        private void StopRecording(AVAudioSession aVAudioSession = null)
-        {
-            if (_audioEngine.Running)
-            {
-                _audioEngine.Stop();
-                _audioEngine.InputNode.RemoveTapOnBus(0);
-                _recognitionTask?.Cancel();
-                _recognitionRequest.EndAudio();
-                _recognitionRequest = null;
-                _recognitionTask = null;
-            }
+            return _audioEngine.Running;
         }
 
         public override void StopListening()
@@ -161,9 +145,7 @@ namespace VoiceToCommand.iOS
             StopRecording();
         }
 
-        public override bool IsListening()
-        {
-            return _audioEngine.Running;
-        }
+
+
     }
 }
