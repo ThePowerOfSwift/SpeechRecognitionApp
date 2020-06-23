@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace VoiceToCommand.Core
 {
@@ -9,17 +8,17 @@ namespace VoiceToCommand.Core
     public interface IVoiceToCommandService
     {
         /// <summary>
-        /// starts listening voice and recognizes the command 
+        /// Starts listening to speech 
         /// </summary>
         void StartListening();
 
         /// <summary>
-        /// Stops listening voice for recognition
+        /// Stops listening to speech
         /// </summary>
         void StopListening();
 
         /// <summary>
-        /// Tells if recognizer is listening or not
+        /// Returns if recognizer is listening or not
         /// </summary>
         /// <returns>
         /// The method returns true or false

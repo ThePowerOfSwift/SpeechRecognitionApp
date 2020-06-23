@@ -3,12 +3,14 @@ using Android.App;
 using Android.OS;
 using Android.Speech;
 using VoiceToCommand.Core;
+using Debug=System.Diagnostics.Debug;
 
 namespace VoiceToCommand.Droid
 {
     public class VoiceToCommandServiceAndroid : VoiceToCommandService
     {
         private bool _isRecording;
+        private RecognitionListener _recognitionListener;
 
         private SpeechRecognizer Recognizer { get; set; }
         private Intent SpeechIntent { get; set; }
@@ -26,34 +28,39 @@ namespace VoiceToCommand.Droid
             }
             else
             {
-                System.Diagnostics.Debug.WriteLine("Recognition isn't available'");
+                Debug.WriteLine("Recognition isn't available'");
             }
         }
 
         private void StartRecording()
         {
-            var recListener = GetRecognitionListener();
+            _recognitionListener = GetRecognitionListener();
 
             Recognizer = SpeechRecognizer.CreateSpeechRecognizer(Application.Context);
-            Recognizer.SetRecognitionListener(recListener);
+            Recognizer.SetRecognitionListener(_recognitionListener);
 
-            InitialiseSpeechIntent();
-            recListener.IsAlreadyRecognized = false;
+            InitializeSpeechIntent();
+            _recognitionListener.IsAlreadyRecognized = false;
             Recognizer.StartListening(SpeechIntent);
         }
 
         private RecognitionListener GetRecognitionListener()
         {
-            var recListener = new RecognitionListener();
-            recListener.BeginSpeech += RecListenerBeginSpeech;
-            recListener.EndSpeech += RecListenerEndSpeech;
-            recListener.Error += RecListenerError;
-            recListener.Ready += RecListenerReady;
-            recListener.Recognized += RecListenerRecognized;
-            return recListener;
+            _recognitionListener = new RecognitionListener();
+            RegisterRecognitionListenerHandlers();
+            return _recognitionListener;
         }
 
-        private void InitialiseSpeechIntent()
+        private void RegisterRecognitionListenerHandlers()
+        {
+            _recognitionListener.BeginSpeech += ListenerOnBeginSpeechHandler;
+            _recognitionListener.EndSpeech += ListenerOnEndOfSpeechHandler;
+            _recognitionListener.Error += ListenerOnErrorHandler;
+            _recognitionListener.Ready += ListenerOnReadyForSpeechHandler;
+            _recognitionListener.Recognized += ListenerOnRecognizedHandler;
+        }
+
+        private void InitializeSpeechIntent()
         {
             SpeechIntent = new Intent(RecognizerIntent.ActionRecognizeSpeech);
             SpeechIntent.PutExtra(RecognizerIntent.ExtraLanguageModel, RecognizerIntent.LanguageModelFreeForm);
@@ -67,33 +74,41 @@ namespace VoiceToCommand.Droid
                 _isRecording = false;
                 Recognizer.StopListening();
             }
+            DeRegisterRecognitionListenerHandlers();
         }
 
-        private void RecListenerReady(object sender, Bundle e) => System.Diagnostics.Debug.WriteLine(nameof(RecListenerReady));
+        private void DeRegisterRecognitionListenerHandlers()
+        {
+            _recognitionListener.BeginSpeech += ListenerOnBeginSpeechHandler;
+            _recognitionListener.EndSpeech += ListenerOnEndOfSpeechHandler;
+            _recognitionListener.Error += ListenerOnErrorHandler;
+            _recognitionListener.Ready += ListenerOnReadyForSpeechHandler;
+            _recognitionListener.Recognized += ListenerOnRecognizedHandler;
+        }
 
-        private void RecListenerBeginSpeech()
+        private void ListenerOnReadyForSpeechHandler(object sender, Bundle e) => Debug.WriteLine(nameof(ListenerOnReadyForSpeechHandler));
+
+        private void ListenerOnBeginSpeechHandler()
         {
             _isRecording = true;
-            System.Diagnostics.Debug.WriteLine(nameof(RecListenerBeginSpeech));
         }
 
-        private void RecListenerEndSpeech()
+        private void ListenerOnEndOfSpeechHandler()
         {
             _isRecording = false;
-            System.Diagnostics.Debug.WriteLine(nameof(RecListenerEndSpeech));
         }
 
-        private void RecListenerError(object sender, SpeechRecognizerError e)
+        private void ListenerOnErrorHandler(object sender, SpeechRecognizerError e)
         {
             _isRecording = false;
-            System.Diagnostics.Debug.WriteLine(e.ToString());
+            Debug.WriteLine(e.ToString());
         }
 
-        private void RecListenerRecognized(object sender, string recognized)
+        private void ListenerOnRecognizedHandler(object sender, string recognized)
         {
             _isRecording = false;
             recognized = recognized.ToLower();
-            System.Diagnostics.Debug.WriteLine(recognized);
+            Debug.WriteLine("Recognized: "+recognized);
             if (AllRegisteredCommands.ContainsKey(recognized))
             {
                 var command = AllRegisteredCommands[recognized];

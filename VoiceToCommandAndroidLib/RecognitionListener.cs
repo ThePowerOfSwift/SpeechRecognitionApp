@@ -26,7 +26,6 @@ namespace VoiceToCommand.Droid
         public void OnResults(Bundle results)
         {
             var matches = results.GetStringArrayList(SpeechRecognizer.ResultsRecognition);
-            System.Diagnostics.Debug.WriteLine(matches.Count);
             if (!IsAlreadyRecognized)
             {
                 if (matches != null && matches.Count > 0)
