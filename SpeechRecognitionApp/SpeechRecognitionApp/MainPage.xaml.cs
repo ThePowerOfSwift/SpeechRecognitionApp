@@ -73,8 +73,34 @@ namespace SpeechRecognitionApp
    
         }
 
-
         private async void CheckPermissionStatus()
+        {
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                CheckIosPermissions();
+            }
+            else if(Device.RuntimePlatform == Device.Android)
+            {
+                CheckAndroidPermissions();
+            }
+        }
+
+        private async void CheckIosPermissions()
+        {
+            var micPermissions = await CrossPermissions.Current.RequestPermissionAsync<MicrophonePermission>();
+            var speechPermissions = await CrossPermissions.Current.RequestPermissionAsync<SpeechPermission>();
+
+            if((micPermissions == PermissionStatus.Granted) && (speechPermissions == PermissionStatus.Granted))
+            {
+                _isPermissionGranted = true;
+            }
+            else
+            {
+                _isPermissionGranted = false;
+            }
+        }
+
+        private async void CheckAndroidPermissions()
         {
             var permissionStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Microphone);
             if (PermissionStatus.Granted == permissionStatus)
@@ -89,12 +115,13 @@ namespace SpeechRecognitionApp
                 }
 
                 var status = await CrossPermissions.Current.RequestPermissionAsync<MicrophonePermission>();
+
                 if (status == PermissionStatus.Granted)
                 {
                     _isPermissionGranted = true;
                 }
-
             }
+
         }
 
         private void MyButton_Pressed(object sender, EventArgs e)

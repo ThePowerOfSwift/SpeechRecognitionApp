@@ -13,35 +13,11 @@ namespace VoiceToCommand.iOS
         private SFSpeechAudioBufferRecognitionRequest _recognitionRequest;
         private SFSpeechRecognitionTask _recognitionTask;
         private string _recognizedString;
-        private bool _isAuthorized;
         private NSTimer _timer;
-
 
         public VoiceToCommandServiceiOS()
         {
-            AskForSpeechPermission();
         }
-
-        private void AskForSpeechPermission()
-        {
-            SFSpeechRecognizer.RequestAuthorization((SFSpeechRecognizerAuthorizationStatus status) =>
-            {
-                switch (status)
-                {
-                    case SFSpeechRecognizerAuthorizationStatus.Authorized:
-                        _isAuthorized = true;
-                        break;
-                    case SFSpeechRecognizerAuthorizationStatus.Denied:
-                        break;
-                    case SFSpeechRecognizerAuthorizationStatus.NotDetermined:
-                        break;
-                    case SFSpeechRecognizerAuthorizationStatus.Restricted:
-                        break;
-                }
-            });
-        }
-
-
 
         public override void StartListening()
         {
@@ -49,17 +25,7 @@ namespace VoiceToCommand.iOS
             {
                 StopRecording();
             }
-
-            if (_isAuthorized)
-            {
-                StartRecording();
-
-            }
-            else
-            {
-                throw new Exception();
-            }
-            
+            StartRecording();
         }
 
         private void StopRecording(AVAudioSession aVAudioSession = null)
@@ -74,8 +40,6 @@ namespace VoiceToCommand.iOS
                 _recognitionTask = null;
             }
         }
-
-
 
         private void StartRecording()
         {
@@ -156,8 +120,6 @@ namespace VoiceToCommand.iOS
                         StopRecording(audioSession);
                     }
                 });
-           
-            
         }
 
         private void ExecuteRecognizedCommand()
@@ -172,7 +134,6 @@ namespace VoiceToCommand.iOS
             }
         }
 
-        
         public override bool IsListening()
         {
             return _audioEngine.Running;
@@ -182,8 +143,5 @@ namespace VoiceToCommand.iOS
         {
             StopRecording();
         }
-
-
-
     }
 }
