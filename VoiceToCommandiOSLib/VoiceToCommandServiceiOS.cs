@@ -109,7 +109,7 @@ namespace VoiceToCommand.iOS
                         _timer = null;
 
                         System.Diagnostics.Debug.WriteLine(_recognizedString);
-                        ExecuteRecognizedCommand();
+                        ExecuteRecognizedCommand(_recognizedString);
 
                         isFinal = true;
                         StopRecording(audioSession);
@@ -120,18 +120,6 @@ namespace VoiceToCommand.iOS
                         StopRecording(audioSession);
                     }
                 });
-        }
-
-        private void ExecuteRecognizedCommand()
-        {
-            if (AllRegisteredCommands.ContainsKey(_recognizedString))
-            {
-                var command = AllRegisteredCommands[_recognizedString];
-                if (command.CanExecute())
-                {
-                    command.Execute();
-                }
-            }
         }
 
         public override bool IsListening()

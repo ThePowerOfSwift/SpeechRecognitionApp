@@ -3,9 +3,6 @@ using Android.App;
 using Android.Speech;
 using VoiceToCommand.Core;
 using Debug=System.Diagnostics.Debug;
-using System.Collections.Generic;
-using System.Linq;
-using System;
 
 namespace VoiceToCommand.Droid
 {
@@ -110,36 +107,7 @@ namespace VoiceToCommand.Droid
             _isRecording = false;
             recognized = recognized.ToLower();
             Debug.WriteLine("Recognized: " + recognized);
-            if (AllRegisteredCommands.ContainsKey(recognized))
-            {
-                var command = AllRegisteredCommands[recognized];
-                if (command.CanExecute())
-                {
-                    command.Execute();
-                }
-            }
-
-
-            else
-            {
-                Debug.WriteLine("Recognized: " + recognized);
-                foreach (var key in AllRegisteredCommands.Keys)
-                {
-                    if (FuzzyString(key, recognized) == true)
-                    {
-                        var command = AllRegisteredCommands[key];
-                        if (command.CanExecute())
-                        {
-                            command.Execute();
-                        }
-                    }
-
-
-                }
-
-            }
-
-
+            ExecuteRecognizedCommand(recognized);
         }
     }
 }
