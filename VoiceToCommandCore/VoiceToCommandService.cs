@@ -43,9 +43,10 @@ namespace VoiceToCommand.Core
 
         protected void ExecuteRecognizedCommand(string recognizedString)
         {
+            IVoiceCommand command;
             if (AllRegisteredCommands.ContainsKey(recognizedString))
             {
-                var command = AllRegisteredCommands[recognizedString];
+                command = AllRegisteredCommands[recognizedString];
                 if (command.CanExecute())
                 {
                     command.Execute();
@@ -53,11 +54,20 @@ namespace VoiceToCommand.Core
             }
             else
             {
+                foreach (var word in GetAllWords(recognizedString).Where(word => AllRegisteredCommands.ContainsKey(word)))
+                {
+                    command = AllRegisteredCommands[word];
+                    if (command.CanExecute())
+                    {
+                        command.Execute();
+                    }
+                    return;
+                }
                 foreach (var key in AllRegisteredCommands.Keys)
                 {
-                    if (FuzzyString.IsSuitableString(key, recognizedString))
+                    if (FuzzyStringMatcher.IsSuitableString(key, recognizedString))
                     {
-                        var command = AllRegisteredCommands[key];
+                        command = AllRegisteredCommands[key];
                         if (command.CanExecute())
                         {
                             command.Execute();
@@ -65,6 +75,11 @@ namespace VoiceToCommand.Core
                     }
                 }
             }
+        }
+
+        private IList<string> GetAllWords(string sentence)
+        {
+            return sentence.Split(' ').ToList();
         }
     }
 }

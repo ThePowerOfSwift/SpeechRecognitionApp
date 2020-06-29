@@ -9,7 +9,7 @@ namespace VoiceToCommand.Core
     /// <param name="command">command present in available commands </param>
     /// <param name="recognized">string recognized by speech recognizer</param>
     /// <returns> true or false</returns>
-    public static class FuzzyString
+    public static class FuzzyStringMatcher
     {
         public static bool IsSuitableString(string command, string recognized)
         {
