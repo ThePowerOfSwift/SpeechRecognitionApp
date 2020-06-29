@@ -33,5 +33,13 @@
     <Compile Include="VoiceCommand.cs" />
     <Compile Include="VoiceToCommandService.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="FuzzyString, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FuzzyString.1.0.0\lib\FuzzyString.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

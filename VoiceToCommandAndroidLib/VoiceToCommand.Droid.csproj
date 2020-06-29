@@ -50,7 +50,6 @@
     <Compile Include="VoiceToCommandServiceAndroid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\VoiceToCommandCore\VoiceToCommand.Core.csproj">
       <Project>{4A7F347B-F895-4E9B-8F9F-C83D69512558}</Project>
