@@ -27,20 +27,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ApproximatelyEquals.cs" />
+    <Compile Include="FuzzyStringComparisonOptions.cs" />
+    <Compile Include="FuzzyStringComparisonTolerance.cs" />
     <Compile Include="FuzzyStringMatcher.cs" />
+    <Compile Include="HammingDistance.cs" />
+    <Compile Include="LevenshteinDistance.cs" />
+    <Compile Include="LongestCommonSubsequence.cs" />
+    <Compile Include="LongestCommonSubstring.cs" />
+    <Compile Include="Operations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IVoiceCommand.cs" />
     <Compile Include="IVoiceToCommandService.cs" />
     <Compile Include="VoiceCommand.cs" />
     <Compile Include="VoiceToCommandService.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="FuzzyString, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FuzzyString.1.0.0\lib\FuzzyString.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

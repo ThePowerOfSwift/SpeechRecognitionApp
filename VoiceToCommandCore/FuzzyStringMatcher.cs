@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-using FuzzyString;
+﻿using System;
+using System.Collections.Generic;
+
 
 namespace VoiceToCommand.Core
 {
@@ -9,11 +10,11 @@ namespace VoiceToCommand.Core
     /// <param name="command">command present in available commands </param>
     /// <param name="recognized">string recognized by speech recognizer</param>
     /// <returns> true or false</returns>
-    public static class FuzzyStringMatcher
+    public static class FuzzyStringMatcher 
     {
         public static bool IsSuitableString(string command, string recognized)
         {
-            var options = new List<FuzzyStringComparisonOptions>();
+            List<FuzzyStringComparisonOptions> options = new List<FuzzyStringComparisonOptions>();
             bool result = false;
 
 
@@ -23,8 +24,8 @@ namespace VoiceToCommand.Core
                 options.Add(FuzzyStringComparisonOptions.UseLongestCommonSubsequence);
                 options.Add(FuzzyStringComparisonOptions.UseLevenshteinDistance);
 
-                var resultWeak = command.ApproximatelyEquals(recognized, options, FuzzyStringComparisonTolerance.Weak);
-                var resultNormal = command.ApproximatelyEquals(recognized, options, FuzzyStringComparisonTolerance.Normal);
+                var resultWeak = command.ApproximatelyEquals(recognized, FuzzyStringComparisonTolerance.Weak, options.ToArray());
+                var resultNormal = command.ApproximatelyEquals(recognized, FuzzyStringComparisonTolerance.Normal, options.ToArray());
 
 
                 if (resultWeak && resultNormal)
@@ -40,8 +41,8 @@ namespace VoiceToCommand.Core
                 options.Add(FuzzyStringComparisonOptions.UseNormalizedLevenshteinDistance);
                 options.Add(FuzzyStringComparisonOptions.UseLongestCommonSubsequence);
 
-                var result1 = command.ApproximatelyEquals(recognized, options, FuzzyStringComparisonTolerance.Weak);
-                var result2 = command.ApproximatelyEquals(recognized, options, FuzzyStringComparisonTolerance.Normal);
+                var result1 = command.ApproximatelyEquals(recognized, FuzzyStringComparisonTolerance.Weak, options.ToArray());
+                var result2 = command.ApproximatelyEquals(recognized, FuzzyStringComparisonTolerance.Normal, options.ToArray());
 
                 var resultTot = result1 && result2;
 
@@ -57,5 +58,7 @@ namespace VoiceToCommand.Core
 
             return result;
         }
+
+       
     }
 }
