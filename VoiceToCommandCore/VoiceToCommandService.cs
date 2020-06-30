@@ -50,7 +50,9 @@ namespace VoiceToCommand.Core
             else
             {
                 var result = GetAllWords(recognizedString).Where(word => AllRegisteredCommands.ContainsKey(word))
-                    .SingleOrDefault();
+                    .FirstOrDefault();
+                    
+                    
 
                 if (result != null)
                     ExecuteCommand(result);
