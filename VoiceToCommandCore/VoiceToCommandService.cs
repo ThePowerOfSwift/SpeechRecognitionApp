@@ -4,14 +4,14 @@ using System.Linq;
 namespace VoiceToCommand.Core
 {
     /// <summary>
-    /// Represents collection of methods which can be used by Android and iOS 
+    ///     Represents collection of methods which can be used by Android and iOS
     /// </summary>
     public abstract class VoiceToCommandService : IVoiceToCommandService
     {
         protected IDictionary<string, IVoiceCommand> AllRegisteredCommands;
 
         /// <summary>
-        /// Adds commands to dictionary
+        ///     Adds commands to dictionary
         /// </summary>
         public VoiceToCommandService()
         {
@@ -38,42 +38,42 @@ namespace VoiceToCommand.Core
 
         public IList<string> GetExecutableCommands()
         {
-            return (AllRegisteredCommands.Where(item => item.Value.CanExecute()).Select(item => item.Key)).ToList();
+            return AllRegisteredCommands.Where(item => item.Value.CanExecute()).Select(item => item.Key).ToList();
         }
 
         protected void ExecuteRecognizedCommand(string recognizedString)
         {
-            IVoiceCommand command;
             if (AllRegisteredCommands.ContainsKey(recognizedString))
             {
-                command = AllRegisteredCommands[recognizedString];
-                if (command.CanExecute())
-                {
-                    command.Execute();
-                }
+                ExecuteCommand(recognizedString);
             }
             else
             {
-                foreach (var word in GetAllWords(recognizedString).Where(word => AllRegisteredCommands.ContainsKey(word)))
-                {
-                    command = AllRegisteredCommands[word];
-                    if (command.CanExecute())
-                    {
-                        command.Execute();
-                    }
-                    return;
-                }
-                foreach (var key in AllRegisteredCommands.Keys)
-                {
-                    if (FuzzyStringMatcher.IsSuitableString(key, recognizedString))
-                    {
-                        command = AllRegisteredCommands[key];
-                        if (command.CanExecute())
-                        {
-                            command.Execute();
-                        }
-                    }
-                }
+                var result = GetAllWords(recognizedString).Where(word => AllRegisteredCommands.ContainsKey(word))
+                    .SingleOrDefault();
+
+                if (result != null)
+                    ExecuteCommand(result);
+                else
+                    FindApproximateCommand(recognizedString);
+            }
+        }
+
+        private void FindApproximateCommand(string recognizedString)
+        {
+            foreach (var key in AllRegisteredCommands.Keys)
+            {
+                if (FuzzyStringMatcher.IsSuitableString(key, recognizedString))
+                    ExecuteCommand(key);
+            }
+        }
+
+        private void ExecuteCommand(string commandString)
+        {
+            var command = AllRegisteredCommands[commandString];
+            if (command.CanExecute())
+            {
+                command.Execute();
             }
         }
 

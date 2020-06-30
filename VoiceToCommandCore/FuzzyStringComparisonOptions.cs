@@ -1,6 +1,4 @@
-﻿
-
-namespace VoiceToCommand.Core
+﻿namespace VoiceToCommand.Core
 {
     public enum FuzzyStringComparisonOptions
     {

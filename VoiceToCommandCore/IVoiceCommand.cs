@@ -1,19 +1,17 @@
-﻿
-namespace VoiceToCommand.Core
+﻿namespace VoiceToCommand.Core
 {
     public interface IVoiceCommand
     {
         /// <summary>
-        /// Method to execute the command
+        ///     Method to execute the command
         /// </summary>
         void Execute();
 
 
         /// <summary>
-        /// Tells if command can be executed
+        ///     Tells if command can be executed
         /// </summary>
         /// <returns>Returns true or false</returns>
         bool CanExecute();
     }
 }
-
