@@ -58,6 +58,13 @@ namespace SpeechRecognitionApp
             _voiceToCommandService.RegisterCommand("Quit", new VoiceCommand(CloseApplication));
             _voiceToCommandService.RegisterCommand("Next", new VoiceCommand(NavigateToSecondPage));
             _voiceToCommandService.RegisterCommand("Third", new VoiceCommand(NavigateToThirdPage));
+            _voiceToCommandService.RegisterCommand("Increase",new VoiceCommand(()=>VolumeSlider.Value += 1));
+            _voiceToCommandService.RegisterCommand("Decrease",new VoiceCommand(()=> VolumeSlider.Value -= 1));
+        }
+
+        private void ChangeSliderValue(int v)
+        {
+            VolumeSlider.Value = v;
         }
 
         private void AvailableCommands()

@@ -24,6 +24,12 @@
             VerticalOptions="Center" 
             FontSize="Small"
             Text="Available Commands"/>
+        <Slider x:Name="VolumeSlider"
+                Minimum="0"
+                Maximum="15"
+                ThumbColor="Black"
+                Value="7"
+                ></Slider>
 
         <ImageButton
                x:Name="MyButton"
