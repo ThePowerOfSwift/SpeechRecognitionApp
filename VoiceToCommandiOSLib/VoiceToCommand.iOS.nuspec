@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>Audiology.Service.VoiceToCommandiOS</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>Audiology</authors>
+    <owners>$author$</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <description>VoiceToCommand iOS library</description>
+    <releaseNotes>Pre release</releaseNotes>
+    <copyright>Copyright 2020</copyright>
+    <tags>Voice Command Speech iOS</tags>
+  </metadata>
+</package>
