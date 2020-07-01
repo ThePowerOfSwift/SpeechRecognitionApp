@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package >
   <metadata>
-    <id>Audiology.Service.VoiceToCommandCore</id>
+    <id>Audiology.Library.VoiceToCommandCore</id>
     <version>$version$</version>
     <title>$title$</title>
     <authors>Audiology</authors>
     <owners>$author$</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
-    <description>VoiceToCommand Core Library</description>
-    <releaseNotes>Pre release</releaseNotes>
+    <description>Voice To Command Core Library</description>
+    <releaseNotes>Pre Release</releaseNotes>
     <copyright>Copyright 2020</copyright>
-    <tags>Voice Speech Command PCL</tags>
+    <tags>Voice Speech Core Command</tags>
   </metadata>
 </package>
