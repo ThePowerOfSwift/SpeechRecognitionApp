@@ -98,7 +98,6 @@ namespace VoiceToCommand.iOS
             {
                 StopRecording();
             }
-            DidFinish("null");
         }
 
         private AVAudioSession GetAudioSessionComponent()
@@ -134,6 +133,7 @@ namespace VoiceToCommand.iOS
                 {
                     DidFinishTalk();
                     StopRecording(audioSession);
+                    DidFinish("null");
                 }
 
                 if (error != null)
