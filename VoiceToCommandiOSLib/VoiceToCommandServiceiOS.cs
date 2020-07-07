@@ -50,7 +50,7 @@ namespace VoiceToCommand.iOS
         private void StartRecording()
         {
             Debug.WriteLine("Start recording");
-            _timer = NSTimer.CreateRepeatingScheduledTimer(3, delegate
+            _timer = NSTimer.CreateRepeatingScheduledTimer(2, delegate
             {
                 DidFinishTalk();
             });
