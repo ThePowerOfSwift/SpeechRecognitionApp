@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading;
 using AVFoundation;
 using Foundation;
 using Speech;
@@ -30,7 +31,6 @@ namespace VoiceToCommand.iOS
                 Debug.WriteLine("Stop recording");
             }
             StartRecording();
-
         }
 
         private void StopRecording(AVAudioSession aVAudioSession = null)
@@ -50,10 +50,6 @@ namespace VoiceToCommand.iOS
         private void StartRecording()
         {
             Debug.WriteLine("Start recording");
-            _timer = NSTimer.CreateRepeatingScheduledTimer(2, delegate
-            {
-                DidFinishTalk();
-            });
 
             _recognitionTask?.Finish();
             _recognitionTask = null;
@@ -82,6 +78,11 @@ namespace VoiceToCommand.iOS
                 DidFinish("Input Node is null");
                 return;
             }
+
+            _timer = NSTimer.CreateRepeatingScheduledTimer(50, delegate
+            {
+                DidFinishTalk();
+            });
 
             PerformRecognitionTask(audioSession);
         }
@@ -126,17 +127,18 @@ namespace VoiceToCommand.iOS
 
                     Debug.WriteLine(_recognizedString);
                     ExecuteRecognizedCommand(_recognizedString);
-
                     isFinal = true;
                 }
 
                 if (error != null || isFinal)
                 {
+                    DidFinishTalk();
                     StopRecording(audioSession);
                 }
 
                 if (error != null)
                 {
+                    DidFinishTalk();
                     DidFinish(error.ToString());
                     Console.WriteLine("Error occured" + error + error.Code + error.Description);
                 }
