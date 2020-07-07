@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using AVFoundation;
-using CoreHaptics;
 using Foundation;
 using Speech;
 using VoiceToCommand.Core;
@@ -15,10 +14,8 @@ namespace VoiceToCommand.iOS
         private SFSpeechAudioBufferRecognitionRequest _recognitionRequest;
         private SFSpeechRecognitionTask _recognitionTask;
         private string _recognizedString;
-        private NSTimer _timer; 
+        private NSTimer _timer;
         public event EventHandler<string> FinishAction;
-       
-      
 
         public VoiceToCommandServiceiOS()
         {
@@ -40,11 +37,10 @@ namespace VoiceToCommand.iOS
         {
             if (_audioEngine.Running)
             {
-                
+                Console.WriteLine("called stop recording with internal closing");
                 _audioEngine.Stop();
                 _audioEngine.InputNode.RemoveTapOnBus(0);
                 _recognitionTask.Finish();
-                _recognitionTask?.Cancel();
                 _recognitionRequest.EndAudio();
                 _recognitionRequest = null;
                 _recognitionTask = null;
@@ -54,12 +50,12 @@ namespace VoiceToCommand.iOS
         private void StartRecording()
         {
             Debug.WriteLine("Start recording");
-            _timer = NSTimer.CreateRepeatingScheduledTimer(2, delegate
+            _timer = NSTimer.CreateRepeatingScheduledTimer(3, delegate
             {
                 DidFinishTalk();
             });
 
-            _recognitionTask?.Cancel();
+            _recognitionTask?.Finish();
             _recognitionTask = null;
 
             NSError nsError;
@@ -70,10 +66,10 @@ namespace VoiceToCommand.iOS
             {
                 DidFinish("Input Node is null");
                 throw new Exception("Input Node is null");
-                
             }
 
             var recordingFormat = inputNode.GetBusOutputFormat(0);
+
             inputNode.InstallTapOnBus(0, 1024, recordingFormat, (buffer, when) =>
             {
                 _recognitionRequest?.Append(buffer);
@@ -81,13 +77,14 @@ namespace VoiceToCommand.iOS
 
             _audioEngine.Prepare();
             _audioEngine.StartAndReturnError(out nsError);
+            if (nsError != null)
+            {
+                DidFinish("Input Node is null");
+                return;
+            }
 
             PerformRecognitionTask(audioSession);
         }
-
-      // public override void DidFinish(string error) => FinishAction?.Invoke(this, error);
-
-     
 
         private void DidFinishTalk()
         {
@@ -118,38 +115,32 @@ namespace VoiceToCommand.iOS
         private void PerformRecognitionTask(AVAudioSession audioSession)
         {
             Debug.WriteLine("recognition part");
+
             _recognitionTask = _speechRecognizer.GetRecognitionTask(_recognitionRequest, (result, error) =>
+            {
+                var isFinal = false;
+                if (result != null && _recognitionRequest != null)
                 {
-                    var isFinal = false;
-                    if (result != null && _recognitionRequest != null)
-                    {
-                        _recognizedString = result.BestTranscription.FormattedString.ToLower();
-                        _timer.Invalidate();
-                        _timer = null;
+                    Console.WriteLine("_RecognizedString" + _recognizedString);
+                    _recognizedString = result.BestTranscription.FormattedString.ToLower();
 
-                        System.Diagnostics.Debug.WriteLine(_recognizedString);
-                        ExecuteRecognizedCommand(_recognizedString);
+                    Debug.WriteLine(_recognizedString);
+                    ExecuteRecognizedCommand(_recognizedString);
 
-                        isFinal = true;
-                        StopRecording(audioSession);
-                        
-                    }
+                    isFinal = true;
+                }
 
-                    if (error != null || isFinal)
-                    {
-                        StopRecording(audioSession);
-                        
-                        
-                    }
+                if (error != null || isFinal)
+                {
+                    StopRecording(audioSession);
+                }
 
-                    if (error != null)
-                    {
-                        DidFinish(error.ToString());
-                        StopRecording(audioSession);
-                    }
-
-
-                });
+                if (error != null)
+                {
+                    DidFinish(error.ToString());
+                    Console.WriteLine("Error occured" + error + error.Code + error.Description);
+                }
+            });
         }
 
         public override bool IsListening()
