@@ -2,15 +2,15 @@
 <package >
   <metadata>
     <id>Audiology.Library.VoiceToCommandCore</id>
-    <version>1.0.0.1</version>
+    <version>$version$</version>
     <title>$title$</title>
     <authors>Audiology</authors>
     <owners>$author$</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
-    <description>Voice To Command Core Library</description>
-    <releaseNotes>Pre Release</releaseNotes>
+    <description>This library is used for Voice To Command in core project</description>
+    <releaseNotes>pre release 2</releaseNotes>
     <copyright>Copyright 2020</copyright>
-    <tags>Voice Speech Core Command</tags>
+    <tags>Voice Command Core speech</tags>
   </metadata>
 </package>

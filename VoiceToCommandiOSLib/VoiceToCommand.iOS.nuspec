@@ -2,15 +2,15 @@
 <package >
   <metadata>
     <id>Audiology.Library.VoiceToCommandiOS</id>
-    <version>1.0.0.2</version>
+    <version>1.1.0.0</version>
     <title>$title$</title>
     <authors>Audiology</authors>
     <owners>$author$</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
-    <description>Voice To Command iOS library</description>
-    <releaseNotes>Pre release</releaseNotes>
+    <description>This is the library for Voice To Command iOS</description>
+    <releaseNotes>pre release 2</releaseNotes>
     <copyright>Copyright 2020</copyright>
-    <tags>Speech Voice Command iOS</tags>
+    <tags>Voice Command Speech iOS</tags>
   </metadata>
 </package>

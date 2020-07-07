@@ -2,15 +2,15 @@
 <package >
   <metadata>
     <id>Audiology.Library.VoiceToCommandAndroid</id>
-    <version>1.0.0.1</version>
+    <version>1.1.0.0</version>
     <title>$title$</title>
     <authors>Audiology</authors>
     <owners>$author$</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
-    <description>Voice To Command Android Library</description>
-    <releaseNotes>Pre release</releaseNotes>
+    <description>This is the library for Voice To command Android </description>
+    <releaseNotes>Pre release 2</releaseNotes>
     <copyright>Copyright 2020</copyright>
-    <tags>Voice Command Android Speech</tags>
+    <tags>Voice Command android Speech</tags>
   </metadata>
 </package>
