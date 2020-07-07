@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Audiology.Library.VoiceToCommandiOS</id>
-    <version>$version$</version>
+    <version>1.0.0.2</version>
     <title>$title$</title>
     <authors>Audiology</authors>
     <owners>$author$</owners>

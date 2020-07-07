@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace VoiceToCommand.Core
 {
@@ -44,5 +45,22 @@ namespace VoiceToCommand.Core
         /// </summary>
         /// <returns>List containing commands which can be executed </returns>
         IList<string> GetExecutableCommands();
+
+
+        /// <summary>
+        /// Callback is called when Command Recognized is not Registered one
+        /// </summary>
+        void UnrecognizableCommandCallBack();
+
+       
+
+        /// <summary>
+        /// Callback gives error if occured during recognizer
+        /// </summary>
+        /// <param name="error">string</param>
+        void DidFinish(string error);
+
+
+
     }
 }

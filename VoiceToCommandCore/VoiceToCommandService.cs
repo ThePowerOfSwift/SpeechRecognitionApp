@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace VoiceToCommand.Core
@@ -9,6 +10,11 @@ namespace VoiceToCommand.Core
     public abstract class VoiceToCommandService : IVoiceToCommandService
     {
         protected IDictionary<string, IVoiceCommand> AllRegisteredCommands;
+        public string _speechRecognitionError;
+
+        public event EventHandler<string> FinishAction;
+
+        public event Action UnrecognizedCommand;
 
         /// <summary>
         ///     Adds commands to dictionary
@@ -25,6 +31,14 @@ namespace VoiceToCommand.Core
 
 
         public abstract bool IsListening();
+
+        
+
+        public void DidFinish(string error) => FinishAction?.Invoke(this, error);
+
+
+
+        public void UnrecognizableCommandCallBack() => UnrecognizedCommand?.Invoke();
 
         public void RegisterCommand(string commandString, IVoiceCommand commandToBeExecuted)
         {
@@ -59,6 +73,9 @@ namespace VoiceToCommand.Core
                 else
                     FindApproximateCommand(recognizedString);
             }
+
+            UnrecognizableCommandCallBack();
+
         }
 
         private void FindApproximateCommand(string recognizedString)
@@ -83,5 +100,7 @@ namespace VoiceToCommand.Core
         {
             return sentence.Split(' ').ToList();
         }
+
+       
     }
 }
