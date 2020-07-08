@@ -11,14 +11,10 @@ namespace VoiceToCommand.Droid
     {
         private bool _isRecording;
         private RecognitionListener _recognitionListener;
-        public event EventHandler<string> FinishAction;
-
-      // public event Action FinishAction;
-
+        
         private SpeechRecognizer Recognizer { get; set; }
         private Intent SpeechIntent { get; set; }
 
-        private string _speechRecognizerError;
 
         public override bool IsListening()
         {
@@ -34,7 +30,8 @@ namespace VoiceToCommand.Droid
             else
             {
                 Debug.WriteLine("Recognition isn't available'");
-                DidFinish("Recognition isn't available");
+                FinishAction?.Invoke("Recognition isn't available");
+               
             }
         }
 
@@ -103,7 +100,7 @@ namespace VoiceToCommand.Droid
             _isRecording = false;
         }
 
-       // public override void DidFinish(string error) => FinishAction?.Invoke(this,error);
+      
 
     
 
@@ -111,7 +108,7 @@ namespace VoiceToCommand.Droid
         private void OnErrorHandler(object sender, SpeechRecognizerError e)
         {
             _isRecording = false;
-            DidFinish(e.ToString());
+            FinishAction?.Invoke(e.ToString());
             Debug.WriteLine(e.ToString());
         }
 
@@ -121,7 +118,7 @@ namespace VoiceToCommand.Droid
             recognized = recognized.ToLower();
             Debug.WriteLine("Recognized: " + recognized);
             ExecuteRecognizedCommand(recognized);
-            DidFinish("null");
+            FinishAction?.Invoke("null");
         }
     }
 }

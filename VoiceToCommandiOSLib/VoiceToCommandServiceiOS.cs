@@ -16,7 +16,7 @@ namespace VoiceToCommand.iOS
         private SFSpeechRecognitionTask _recognitionTask;
         private string _recognizedString;
         private NSTimer _timer;
-        public event EventHandler<string> FinishAction;
+        
 
         public VoiceToCommandServiceiOS()
         {
@@ -60,7 +60,8 @@ namespace VoiceToCommand.iOS
             var inputNode = _audioEngine.InputNode;
             if (inputNode == null)
             {
-                DidFinish("Input Node is null");
+                
+                FinishAction?.Invoke("Input node is null");
                 throw new Exception("Input Node is null");
             }
 
@@ -75,7 +76,8 @@ namespace VoiceToCommand.iOS
             _audioEngine.StartAndReturnError(out nsError);
             if (nsError != null)
             {
-                DidFinish("Input Node is null");
+                
+                FinishAction?.Invoke("Input Node is null");
                 return;
             }
 
@@ -133,13 +135,14 @@ namespace VoiceToCommand.iOS
                 {
                     DidFinishTalk();
                     StopRecording(audioSession);
-                    DidFinish("null");
+                    FinishAction?.Invoke("null");
                 }
 
                 if (error != null)
                 {
+                    
                     DidFinishTalk();
-                    DidFinish(error.ToString());
+                    FinishAction?.Invoke(error.ToString());
                     Console.WriteLine("Error occured" + error + error.Code + error.Description);
                 }
             });

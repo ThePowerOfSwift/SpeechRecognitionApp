@@ -10,12 +10,11 @@ namespace VoiceToCommand.Core
     public abstract class VoiceToCommandService : IVoiceToCommandService
     {
         protected IDictionary<string, IVoiceCommand> AllRegisteredCommands;
-        public string _speechRecognitionError;
+        
 
-        public event EventHandler<string> FinishAction;
+        public Action<string> FinishAction;
 
-        public event Action UnrecognizedCommand;
-
+        
         /// <summary>
         ///     Adds commands to dictionary
         /// </summary>
@@ -32,13 +31,6 @@ namespace VoiceToCommand.Core
 
         public abstract bool IsListening();
 
-        
-
-        public void DidFinish(string error) => FinishAction?.Invoke(this, error);
-
-
-
-        public void UnrecognizableCommandCallBack() => UnrecognizedCommand?.Invoke();
 
         public void RegisterCommand(string commandString, IVoiceCommand commandToBeExecuted)
         {
@@ -73,9 +65,9 @@ namespace VoiceToCommand.Core
                 else
                     FindApproximateCommand(recognizedString);
             }
-
-            UnrecognizableCommandCallBack();
-
+            
+            FinishAction?.Invoke("Unrecognized command");
+            
         }
 
         private void FindApproximateCommand(string recognizedString)
@@ -101,6 +93,9 @@ namespace VoiceToCommand.Core
             return sentence.Split(' ').ToList();
         }
 
-       
+        public void RecognitionFinishAction(Action<string> callback)
+        {
+            FinishAction = callback;
+        }
     }
 }

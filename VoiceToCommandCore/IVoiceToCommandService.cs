@@ -47,18 +47,19 @@ namespace VoiceToCommand.Core
         IList<string> GetExecutableCommands();
 
 
-        /// <summary>
-        /// Callback is called when Command Recognized is not Registered one
-        /// </summary>
-        void UnrecognizableCommandCallBack();
+       
+        
 
        
 
         /// <summary>
-        /// Callback gives error if occured during recognizer
+        /// Callback gives error if occured during recognition
         /// </summary>
-        /// <param name="error">string</param>
-        void DidFinish(string error);
+        /// <param name="callback">string</param>
+        void RecognitionFinishAction(Action<string> callback);
+
+
+
 
 
 

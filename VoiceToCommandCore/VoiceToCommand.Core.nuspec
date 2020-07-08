@@ -8,9 +8,9 @@
     <owners>$author$</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
-    <description>This library is used for Voice To Command in core project</description>
-    <releaseNotes>pre release 2</releaseNotes>
+    <description>Core library for speech recognition</description>
+    <releaseNotes>pre release 4</releaseNotes>
     <copyright>Copyright 2020</copyright>
-    <tags>Voice Command Core speech</tags>
+    <tags>Speech Command Voice Core </tags>
   </metadata>
 </package>
