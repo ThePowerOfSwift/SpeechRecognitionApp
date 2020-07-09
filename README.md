@@ -4,7 +4,9 @@
 ## About Project
 
 
->**A NuGet for Mobile application development using Xamarin.Forms, Which will listen to speech and then try to recognize the speech and try to execute the Action that has been registered by the NuGet consuming application.**
+>**A NuGet for Mobile application development using Xamarin.Forms, Which will listen to speech and try to recognize and execute the Action that has been registered by the application consuming NuGet.**
+
+
 
 >**Library provides support for .NET Framework 4.5 , ASP.NET Core 1.0 , MonoAndroid v9.0 , iOS**
 
