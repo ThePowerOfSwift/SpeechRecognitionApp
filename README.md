@@ -8,6 +8,7 @@
 
 >**Library provides support for .NET Framework 4.5 , ASP.NET Core 1.0 , MonoAndroid v9.0 , iOS**
 
+
 ## Installation
 
 **The quickest way to get the latest release of VoiceToCommand Library is to add it to your project using NuGet**
@@ -26,14 +27,19 @@
 **Start Coding! :computer:**           
 
 
+
 ## Example
 
+
 **How To Register Command :**
+
 
 ```c#
 
 
+
    _voiceToCommandService.RegisterCommand("NameOfTheCommand", new VoiceCommand(ActionToBeExecuted));
+
 
 
 ```
