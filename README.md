@@ -37,7 +37,7 @@
 
 **Both Android and iOS needs permission to be added to application in order to use Speech recognition**
  
- - **Android** : requires 1 permission that is **Microphone Permission** , add below given code in Manifest file
+ - **Android** : requires 1 permission i.e **Microphone Permission** , add below given code in Manifest file
     ```xml
     
          <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -48,7 +48,7 @@
     
     
       
- - **iOS** : requires 2 permission that is **Microphone Permission** and **Speech Recognition Permission** , add below given key in info.plist in app using library
+ - **iOS** : requires 2 permission i.e **Microphone Permission** and **Speech Recognition Permission** , add below given key in info.plist in app
      ```
      
          <key>NSSpeechRecognitionUsageDescription</key>
