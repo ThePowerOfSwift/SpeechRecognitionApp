@@ -13,18 +13,20 @@
        
        
    - **PlatForm Specific Project Installation:**    
-       *  **Android**
+       * **Android**
            > **Install Audiology.Library.VoiceToCommandCore and Audiology.Library.VoiceToCommandDroid in Android Project**
            
-       *  **iOS**
+       * **iOS**
            > **Install  Audiology.Library.VoiceToCommandCore and Audiology.Library.VoiceToCommandiOS in iOS Project**
 
 
 ## Example
 
+**How To Register Command :**
+
 ```
 
-
+ _voiceToCommandService.RegisterCommand("NameOfTheCommand", new VoiceCommand(ActionToBeExecuted));
 
 
 ```
