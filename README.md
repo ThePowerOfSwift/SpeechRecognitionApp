@@ -6,7 +6,11 @@
 
 >**A NuGet for Mobile application development using Xamarin.Forms, Which will listen to speech and then try to recognize the speech and try to execute the Action that has been registered by the NuGet consuming application.**
 
+>**Library provides support for .NET Framework 4.5 , ASP.NET Core 1.0 , MonoAndroid v9.0 , iOS**
+
 ## Installation
+
+**The quickest way to get the latest release of VoiceToCommand Library is to add it to your project using NuGet**
 
    - **Platform Independent Library Installation:**
        > **Install Audiology.Library.VoiceToCommandCore(NuGet package Name) in the platform independent project**
@@ -14,10 +18,10 @@
        
    - **PlatForm Specific Project Installation:**    
        * **Android**
-           > **Install Audiology.Library.VoiceToCommandCore and Audiology.Library.VoiceToCommandDroid in Android Project**
+       > **Install Audiology.Library.VoiceToCommandCore and Audiology.Library.VoiceToCommandDroid in Android Project**
            
        * **iOS**
-           > **Install  Audiology.Library.VoiceToCommandCore and Audiology.Library.VoiceToCommandiOS in iOS Project**
+       > **Install  Audiology.Library.VoiceToCommandCore and Audiology.Library.VoiceToCommandiOS in iOS Project**
            
 **Start Coding! :computer:**           
 
@@ -37,9 +41,10 @@
 ## Features
    
    - **Can pick the command from a sentence**
-   - **Can get the nearest matching command (Back->Bat)**
+   - **Can get the nearest matching command (For example : Back -> Bat)**
    - **Has Fuzzy String implementation**
    - **Can execute command for words as well as sentences**
+   - **Easy to Register Commands and Use**
 
 
 
