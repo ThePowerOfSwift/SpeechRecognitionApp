@@ -68,9 +68,13 @@
 * **For offline recognition you need to download the offline voice . It can done in  following steps in your system settings under Language & Input:**
 
     - **Find "Google Voice Typing", make sure it's enabled**
+    
     - **Tap 'Offline Speech Recognition', and install / download all languages that you would like to use**
+    
     - **If preferred language does not have an offline voice available under Google Voice Typing, you must choose a language that does and make it your default language.**
+    
     - **Go back to 'Language & Input', and select the same languages again. Then select your primary language. Note that this must be one of the 'Offline Languages'you downloaded and installed first.**
+    
      - **A common problem is that the default language is not available as an offline voice.For example en-NZ is not available offline so you must use en-US or en-GB as your default language (but you can keep en-NZ as a secondary language)**
 
 
