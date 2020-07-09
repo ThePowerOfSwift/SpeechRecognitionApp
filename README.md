@@ -18,6 +18,8 @@
            
        * **iOS**
            > **Install  Audiology.Library.VoiceToCommandCore and Audiology.Library.VoiceToCommandiOS in iOS Project**
+           
+**Start Coding! :computer:**           
 
 
 ## Example
@@ -26,7 +28,7 @@
 
 ```
 
- _voiceToCommandService.RegisterCommand("NameOfTheCommand", new VoiceCommand(ActionToBeExecuted));
+  _voiceToCommandService.RegisterCommand("NameOfTheCommand", new VoiceCommand(ActionToBeExecuted)); 
 
 
 ```
