@@ -30,9 +30,9 @@
 
 **How To Register Command :**
 
-```
+```c#
 
-  _voiceToCommandService.RegisterCommand("NameOfTheCommand", new VoiceCommand(ActionToBeExecuted)); 
+   _voiceToCommandService.RegisterCommand("NameOfTheCommand", new VoiceCommand(ActionToBeExecuted));
 
 
 ```
