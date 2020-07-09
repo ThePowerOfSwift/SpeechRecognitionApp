@@ -1,4 +1,6 @@
-# NuGet for Recognizing speech and performing action that has been registered
+# Voice To Command 
+
+> **NuGet for Recognizing speech and performing action that has been registered**
 
 
 ## About Project
@@ -26,7 +28,7 @@
        * **iOS**
        > **Install  Audiology.Library.VoiceToCommandCore and Audiology.Library.VoiceToCommandiOS in iOS Project**
            
-**Start Coding! :computer:**           
+**Happy Coding! :computer:**           
 
 
 
