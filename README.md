@@ -28,7 +28,42 @@
        * **iOS**
        > **Install  Audiology.Library.VoiceToCommandCore and Audiology.Library.VoiceToCommandiOS in iOS Project**
            
-**Happy Coding! :computer:**           
+**Happy Coding! :computer:**  
+
+
+## Prerequistes
+
+ 
+
+**Both Android and iOS needs permission to be added to application in order to use Speech recognition**
+ 
+ - **Android** : requires 1 permission that is **Microphone Permission** , add below given code in Manifest file
+    ```xml
+    
+         <uses-permission android:name="android.permission.RECORD_AUDIO" />
+         
+    
+    ```
+    - **Request User to grant Permission at runtime for android 6.0+**
+    
+    
+      
+ - **iOS** : requires 2 permission that is **Microphone Permission** and **Speech Recognition Permission** , add below given key in info.plist in app using library
+     ```
+     
+         <key>NSSpeechRecognitionUsageDescription</key>
+         <string>Allows you create tasks</string>
+         <key>NSMicrophoneUsageDescription</key>
+         
+         
+         <key>NSSpeechRecognitionUsageDescription</key>
+         <key>NSMicrophoneUsageDescription</key>
+     
+     
+     ```
+     
+     
+     
 
 
 
