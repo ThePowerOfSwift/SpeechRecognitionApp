@@ -52,13 +52,13 @@
      ```
      
      
-     <key>NSSpeechRecognitionUsageDescription</key>
+                     <key>NSSpeechRecognitionUsageDescription</key>
      
-     <string>Allows you recognize speech</string>
+                     <string>Allows you recognize speech</string>
      
-     <key>NSMicrophoneUsageDescription</key>
+                     <key>NSMicrophoneUsageDescription</key>
          
-     <string>Allows you to record audio</string>
+                     <string>Allows you to record audio</string>
  
   
      
