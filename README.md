@@ -32,6 +32,7 @@
 
 ```c#
 
+
    _voiceToCommandService.RegisterCommand("NameOfTheCommand", new VoiceCommand(ActionToBeExecuted));
 
 
