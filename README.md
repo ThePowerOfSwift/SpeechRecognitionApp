@@ -50,15 +50,10 @@
       
  - **iOS** : requires 2 permission i.e **Microphone Permission** and **Speech Recognition Permission** , add below given key in info.plist in app
      ```
-     
-         <key>NSSpeechRecognitionUsageDescription</key>
-         <string>Allows you create tasks</string>
-         <key>NSMicrophoneUsageDescription</key>
-         
-         
-         <key>NSSpeechRecognitionUsageDescription</key>
-         <key>NSMicrophoneUsageDescription</key>
-     
+     	<key>NSSpeechRecognitionUsageDescription</key>
+   	<string>Allows you to send commands via Voice</string>
+	   <key>NSMicrophoneUsageDescription</key>
+	   <string>Allows you to send commands via Voice</string>
      
      ```
      
