@@ -52,8 +52,8 @@
      ```
      	<key>NSSpeechRecognitionUsageDescription</key>
    	<string>Allows you to send commands via Voice</string>
-	   <key>NSMicrophoneUsageDescription</key>
-	   <string>Allows you to send commands via Voice</string>
+        <key>NSMicrophoneUsageDescription</key>
+        <string>Allows you to send commands via Voice</string>
      
      ```
      
