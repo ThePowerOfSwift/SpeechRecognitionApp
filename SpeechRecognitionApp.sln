@@ -17,11 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoiceToCommand.iOS", "Voice
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoiceToCommand.Core", "VoiceToCommandCore\VoiceToCommand.Core.csproj", "{4A7F347B-F895-4E9B-8F9F-C83D69512558}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A64CFC0A-641C-4633-AA67-812267CA87DF}"
-	ProjectSection(SolutionItems) = preProject
-		C:\Users\Z0043FZV\Desktop\WorkingApp.gif = C:\Users\Z0043FZV\Desktop\WorkingApp.gif
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
