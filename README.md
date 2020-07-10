@@ -112,7 +112,7 @@
 ## Limitations
 
    * **Android**
-      - **Works well in Online and offline mode, provided we enable google voice typing for Offline mode.** [Refer this section to Enable Offline speech recognition](https://github.com/SpeechRecognitionDemo/SpeechRecognitionApp#enabling-offline-speech-recognition-in-android)
+      - **Works well in Online and offline mode, provided we enable google voice typing for Offline mode.** [Refer this section for how to Enable Offline speech recognition](https://github.com/SpeechRecognitionDemo/SpeechRecognitionApp#enabling-offline-speech-recognition-in-android)
       
    * **iOS**
       - **Our NuGet supports only online speech recognition.**
