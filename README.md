@@ -107,6 +107,19 @@
    - **Has Fuzzy String implementation**
    - **Can execute command for words as well as sentences**
    - **Easy to Register Commands and Use**
+  
+
+## Limitations
+
+   * **Android**
+      - **Works well in Online and offline mode, provided we enable google voice typing for Offline mode.** [Refer this section to Enable Offline speech recognition](https://github.com/SpeechRecognitionDemo/SpeechRecognitionApp#enabling-offline-speech-recognition-in-android)
+      
+   * **iOS**
+      - **Our NuGet supports only online speech recognition.**
+      - **Individual iOS devices have a limited number of recognitions that can be performed per day.**
+      - **iOS speech recognizer can only recognize maximum for 1 min , As of now timer is set for 50 Seconds**
+
+  
 
 
 
