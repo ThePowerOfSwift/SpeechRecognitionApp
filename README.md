@@ -23,15 +23,15 @@
 **The quickest way to get the latest release of VoiceToCommand Library is to add it to your project using NuGet**
 
    - **Platform Independent Library Installation:**
-       > **Install Audiology.Library.VoiceToCommandCore(NuGet package Name) in the platform independent project**
+       > **Install VoiceToCommand.Library.Core(NuGet package Name) in the platform independent project**
        
        
    - **PlatForm Specific Project Installation:**    
        * **Android**
-       > **Install Audiology.Library.VoiceToCommandCore and Audiology.Library.VoiceToCommandDroid in Android Project**
+       > **Install VoiceToCommand.Library.Core and VoiceToCommand.Library.Droid in Android Project**
            
        * **iOS**
-       > **Install  Audiology.Library.VoiceToCommandCore and Audiology.Library.VoiceToCommandiOS in iOS Project**
+       > **Install VoiceToCommand.Library.Core and VoiceToCommand.Library.iOS in iOS Project**
            
 **Happy Coding! :computer:**  
 
