@@ -6,7 +6,8 @@
         ///     Method to execute the command
         /// </summary>
         void Execute();
-
+        void ExecuteWithIntResult(int result);
+        void ExecuteWithStringResult(string result);
 
         /// <summary>
         ///     Tells if command can be executed

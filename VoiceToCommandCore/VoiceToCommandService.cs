@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace VoiceToCommand.Core
 {
@@ -57,11 +58,21 @@ namespace VoiceToCommand.Core
             {
                 var result = GetAllWords(recognizedString).Where(word => AllRegisteredCommands.ContainsKey(word))
                     .FirstOrDefault();
-                    
-                    
-
+                
                 if (result != null)
-                    ExecuteCommand(result);
+                {
+                    var data = Regex.Match(recognizedString, @"\d+").Value;
+                    if(data.Length>0)
+                    {
+                        System.Diagnostics.Debug.WriteLine(data);
+                        var command = AllRegisteredCommands[result];
+                        command?.ExecuteWithIntResult(int.Parse(data));
+                    }
+
+                    var substring = recognizedString.Substring(recognizedString.IndexOf(result)+result.Length);
+                    var testCommand = AllRegisteredCommands[result];
+                    testCommand?.ExecuteWithStringResult(substring);
+                }
                 else
                     FindApproximateCommand(recognizedString);
             }
@@ -84,7 +95,8 @@ namespace VoiceToCommand.Core
             var command = AllRegisteredCommands[commandString];
             if (command.CanExecute())
             {
-                command.Execute();
+                command?.Execute();
+               // command?.ExecuteWithIntResult()
             }
         }
 

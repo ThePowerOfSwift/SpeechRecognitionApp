@@ -101,10 +101,6 @@ namespace VoiceToCommand.Droid
         }
 
       
-
-    
-
-
         private void OnErrorHandler(object sender, SpeechRecognizerError e)
         {
             _isRecording = false;

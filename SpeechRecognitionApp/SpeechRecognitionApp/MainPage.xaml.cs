@@ -55,6 +55,10 @@ namespace SpeechRecognitionApp
 
         private void RegisterVoiceCommands()
         {
+            Action<int> intAction = ChangeSliderValue;
+            _voiceToCommandService.RegisterCommand("Volume", new VoiceCommand(intAction));
+            Action<string> messageAction = DisplayMessage;
+            _voiceToCommandService.RegisterCommand("Type", new VoiceCommand(messageAction));
             _voiceToCommandService.RegisterCommand("Quit", new VoiceCommand(CloseApplication));
             _voiceToCommandService.RegisterCommand("Next", new VoiceCommand(NavigateToSecondPage));
             _voiceToCommandService.RegisterCommand("Third", new VoiceCommand(NavigateToThirdPage));
@@ -62,6 +66,10 @@ namespace SpeechRecognitionApp
             _voiceToCommandService.RegisterCommand("Decrease",new VoiceCommand(()=> VolumeSlider.Value -= 1));
         }
 
+        private void DisplayMessage(string msg)
+        {
+            DisplayAlert("Message", msg, "Ok");
+        }
         private void ChangeSliderValue(int v)
         {
             VolumeSlider.Value = v;
