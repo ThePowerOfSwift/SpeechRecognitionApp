@@ -1,6 +1,6 @@
 # Voice To Command 
 
-> **NuGet for Recognizing speech and performing action that has been registered**
+> **Nuget for Recognizing speech to invoke User interface actions/Custom Business actions**
 
 
 ## About Project
