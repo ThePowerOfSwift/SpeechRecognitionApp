@@ -70,7 +70,7 @@
      
 ## Enabling Offline Speech Recognition in Android 
 
-* **For offline recognition you need to download the offline voice . It can done in  following steps in your system settings under Language & Input:**
+* **For offline recognition you need to download the offline language files . It can done in  following steps in your system settings under Language & Input:**
 
     - **Find "Google Voice Typing", make sure it's enabled**
     
