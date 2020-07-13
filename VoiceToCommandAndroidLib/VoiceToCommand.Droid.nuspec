@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package >
   <metadata>
-    <id>Audiology.Library.VoiceToCommandDroid</id>
-    <version>1.3.0.0</version>
+    <id>VoiceToCommand.Library.Droid</id>
+    <version>1.4.0.0</version>
     <title>$title$</title>
-    <authors>Audiology</authors>
+    <authors>speech</authors>
     <owners>$author$</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
-    <description>Android library for speech recognition</description>
-    <releaseNotes>Pre release 4</releaseNotes>
+    <description>Android library for voice to command</description>
+    <releaseNotes>pre release 5</releaseNotes>
     <copyright>Copyright 2020</copyright>
-    <tags>Android speech command voice</tags>
+    <tags>voice speech android command</tags>
   </metadata>
 </package>

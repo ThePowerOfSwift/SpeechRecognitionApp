@@ -10,11 +10,11 @@ namespace VoiceToCommand.Core
     public abstract class VoiceToCommandService : IVoiceToCommandService
     {
         protected IDictionary<string, IVoiceCommand> AllRegisteredCommands;
-        
 
+        public bool IsCommandExecuted;
+        
         public Action<string> FinishAction;
 
-        
         /// <summary>
         ///     Adds commands to dictionary
         /// </summary>
@@ -57,17 +57,13 @@ namespace VoiceToCommand.Core
             {
                 var result = GetAllWords(recognizedString).Where(word => AllRegisteredCommands.ContainsKey(word))
                     .FirstOrDefault();
-                    
-                    
 
                 if (result != null)
                     ExecuteCommand(result);
                 else
                     FindApproximateCommand(recognizedString);
             }
-            
-            FinishAction?.Invoke("Unrecognized command");
-            
+
         }
 
         private void FindApproximateCommand(string recognizedString)
@@ -84,6 +80,7 @@ namespace VoiceToCommand.Core
             var command = AllRegisteredCommands[commandString];
             if (command.CanExecute())
             {
+                IsCommandExecuted = true;
                 command.Execute();
             }
         }

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package >
   <metadata>
-    <id>Audiology.Library.VoiceToCommandCore</id>
+    <id>VoiceToCommand.Library.Core</id>
     <version>$version$</version>
     <title>$title$</title>
-    <authors>Audiology</authors>
+    <authors>Speech</authors>
     <owners>$author$</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
-    <description>Core library for speech recognition</description>
-    <releaseNotes>pre release 4</releaseNotes>
+    <description>Core library for voice to command </description>
+    <releaseNotes>pre release 5</releaseNotes>
     <copyright>Copyright 2020</copyright>
-    <tags>Speech Command Voice Core </tags>
+    <tags>Voice speech core android ios command</tags>
   </metadata>
 </package>

@@ -23,6 +23,7 @@ namespace VoiceToCommand.Droid
 
         public override void StartListening()
         {
+            IsCommandExecuted = false;
             if (SpeechRecognizer.IsRecognitionAvailable(Application.Context))
             {
                 StartRecording();
@@ -100,11 +101,6 @@ namespace VoiceToCommand.Droid
             _isRecording = false;
         }
 
-      
-
-    
-
-
         private void OnErrorHandler(object sender, SpeechRecognizerError e)
         {
             _isRecording = false;
@@ -118,7 +114,10 @@ namespace VoiceToCommand.Droid
             recognized = recognized.ToLower();
             Debug.WriteLine("Recognized: " + recognized);
             ExecuteRecognizedCommand(recognized);
-            FinishAction?.Invoke("null");
+            if(IsCommandExecuted)
+                FinishAction?.Invoke("recognized:"+recognized);
+            else
+                FinishAction?.Invoke("Unrecognized:"+recognized);
         }
     }
 }

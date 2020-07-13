@@ -24,6 +24,7 @@ namespace VoiceToCommand.iOS
 
         public override void StartListening()
         {
+            IsCommandExecuted = false;
             Debug.WriteLine("Start listening");
             if (_audioEngine.Running)
             {
@@ -128,6 +129,10 @@ namespace VoiceToCommand.iOS
 
                     Debug.WriteLine(_recognizedString);
                     ExecuteRecognizedCommand(_recognizedString);
+                    if(IsCommandExecuted)
+                        FinishAction?.Invoke("Recognized"+_recognizedString);
+                    else
+                        FinishAction?.Invoke("Unrecognized"+_recognizedString);
                     isFinal = true;
                 }
 
@@ -135,7 +140,7 @@ namespace VoiceToCommand.iOS
                 {
                     DidFinishTalk();
                     StopRecording(audioSession);
-                    FinishAction?.Invoke("null");
+                    FinishAction?.Invoke(" ");
                 }
 
                 if (error != null)

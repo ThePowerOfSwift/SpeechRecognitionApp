@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package >
   <metadata>
-    <id>Audiology.Library.VoiceToCommandiOS</id>
-    <version>1.3.0.0</version>
+    <id>VoiceToCommand.Library.iOS</id>
+    <version>1.4.0.0</version>
     <title>$title$</title>
-    <authors>Audiology</authors>
+    <authors>Speech</authors>
     <owners>$author$</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
-    <description>iOS library for speech recognition</description>
-    <releaseNotes>Pre release 4</releaseNotes>
+    <description>iOS library for VoiceToCommand</description>
+    <releaseNotes>pre release 5</releaseNotes>
     <copyright>Copyright 2020</copyright>
-    <tags>iOS speech command voice</tags>
+    <tags>Voice speech iOS command</tags>
   </metadata>
 </package>
