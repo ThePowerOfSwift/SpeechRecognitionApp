@@ -102,11 +102,10 @@
 
 ## Features
    
-   - **Can pick the command from a sentence**
    - **Can get the nearest matching command (For example : Back -> Bat)**
    - **Has Fuzzy String implementation**
-   - **Can execute command for words as well as sentences**
-   - **Easy to Register Commands and Use**
+   - **Easy to Register Commands**
+   - **Easy to install and Use the NuGet package**
   
 
 ## Limitations
