@@ -10,7 +10,7 @@
 
 
 
->**Library provides support for .NET Framework 4.5 , ASP.NET Core 1.0 , MonoAndroid v9.0 , iOS**
+>**Library provides support for .NET Framework 4.5 , MonoAndroid v9.0 , iOS**
 
 
 ## Demo
